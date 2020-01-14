@@ -1,0 +1,13 @@
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\bin\Debug\netcoreapp2.2\ParentPicks.deps.json
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\bin\Debug\netcoreapp2.2\ParentPicks.runtimeconfig.json
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\bin\Debug\netcoreapp2.2\ParentPicks.runtimeconfig.dev.json
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\bin\Debug\netcoreapp2.2\ParentPicks.dll
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\obj\Debug\netcoreapp2.2\ParentPicks.csprojAssemblyReference.cache
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\obj\Debug\netcoreapp2.2\ParentPicks.RazorAssemblyInfo.cache
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\obj\Debug\netcoreapp2.2\ParentPicks.RazorAssemblyInfo.cs
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\obj\Debug\netcoreapp2.2\ParentPicks.AssemblyInfoInputs.cache
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\obj\Debug\netcoreapp2.2\ParentPicks.AssemblyInfo.cs
+C:\Users\Emily DeWitt\source\repos\ParentPicks\ParentPicks\obj\Debug\netcoreapp2.2\ParentPicks.RazorTargetAssemblyInfo.cache
