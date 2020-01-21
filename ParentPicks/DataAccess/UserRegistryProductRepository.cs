@@ -42,7 +42,7 @@ namespace ParentPicks.DataAccess
             }
         }
 
-        public bool UpdateBundle(int userRegistryProductId, UpdateUserRegistryProductDTO userRegistryProductToUpdate)
+        public bool UpdateUserRegistryProduct(int userRegistryProductId, UpdateUserRegistryProductDTO userRegistryProductToUpdate)
         {
             using (var db = new SqlConnection(_connectionString))
             {

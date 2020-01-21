@@ -26,6 +26,20 @@ namespace ParentPicks.DataAccess
             }
         }
 
+        public UserPersonal GetUserPersonal(int userId)
+        {
+            using (var db = new SqlConnection(_connectionString)) 
+            {
+                var sql = @"Select * from UserPersonal where [UserId] = @UserId";
+                var parameters = new
+                {
+                    UserId = userId
+                };
+                var userPersonal = db.QueryFirst<UserPersonal>(sql, parameters);
+                return userPersonal;
+            }
+        }
+
         public bool AddNewUserPersonal(AddUserPersonalDTO userPersonalToAdd)
         {
             using (var db = new SqlConnection(_connectionString))

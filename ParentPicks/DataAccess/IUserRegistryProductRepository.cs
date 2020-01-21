@@ -1,4 +1,5 @@
 ﻿using ParentPicks.DTOs;
+using ParentPicks.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,8 @@ namespace ParentPicks.DataAccess
 {
     public interface IUserRegistryProductRepository
     {
-        IEnumerable<UserRegistryProductRepository> GetAllUserRegistryProducts();
-        bool AddNewUserRegistryProduct(AddUserRegistryProductDTO userRegistryProductToAdd);
+        IEnumerable<UserRegistryProduct> GetAllUserRegistryProducts();
+        bool AddUserRegistryProduct(AddUserRegistryProductDTO userRegistryProductToAdd);
         bool UpdateUserRegistryProduct(int userRegistryProductId, UpdateUserRegistryProductDTO userRegistryProductToUpdate);
         bool DeleteUserRegistryProduct(int userRegistryProductId);
 
