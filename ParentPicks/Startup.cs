@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using ParentPicks.DataAccess;
 
 namespace ParentPicks
 {
@@ -25,8 +29,39 @@ namespace ParentPicks
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var authSettings = Configuration.GetSection("AuthenticationSettings");
+            var connectionString = Configuration.GetValue<string>("ConnectionString");
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-        }
+            services.AddTransient<SqlConnection>(provider => new SqlConnection(connectionString));
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserFeedbackRepository, UserFeedbackRepository>();
+            services.AddScoped<IUserPersonalRepository, UserPersonalRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IUserRegistryProductRepository, UserRegistryProductRepository>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.IncludeErrorDetails = true;
+                    options.Authority = authSettings["Authority"];
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = authSettings["Issuer"],
+                        ValidateAudience = true,
+                        ValidAudience = authSettings["Audience"],
+                        ValidateLifetime = true
+                    };
+                }
+                );
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder => 
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                }));
+        }   
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -41,6 +76,7 @@ namespace ParentPicks
                 app.UseHsts();
             }
             app.UseCors("MyPolicy");
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
