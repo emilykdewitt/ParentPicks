@@ -27,10 +27,12 @@ namespace ParentPicks.Controllers
         }
 
         // Get: api/UserPersonal/3
-        [HttpGet("{userId}", Name = "GetUserPersonal")]
+        [HttpGet("{userId}")]
         public UserPersonal Get(int userId)
         {
-            return _repo.GetUserPersonal().FirstOrDefault(userPersonal => userPersonal.UserId == userId);
+            var repo = new UserPersonalRepository();
+            var userPersonal = repo.GetUserPersonal(userId);
+            return userPersonal;
         }
 
     }

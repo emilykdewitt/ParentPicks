@@ -26,6 +26,38 @@ namespace ParentPicks.DataAccess
             }
         }
 
+        public IEnumerable<UserFeedback> GetUserFeedbacksByUserId(int userId)
+        {
+            using (var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"Select *
+                            from UserFeedback
+                            where UserId = @userId";
+                var parameters = new
+                {
+                    UserId = userId
+                };
+                var userFeedbacks = db.Query<UserFeedback>(sql, parameters);
+                return userFeedbacks;
+            }
+        }
+
+        public IEnumerable<UserFeedback> GetUserFeedbacksByProductId(int productId)
+        {
+            using (var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"Select *
+                            from UserFeedback
+                            where ProductId = @productId";
+                var parameters = new
+                {
+                    ProductId = productId
+                };
+                var userFeedbacks = db.Query<UserFeedback>(sql, parameters);
+                return userFeedbacks;
+            }
+        }
+
         public bool AddNewUserFeedback(AddUserFeedbackDTO userFeedbackToAdd)
         {
             using (var db = new SqlConnection(_connectionString))

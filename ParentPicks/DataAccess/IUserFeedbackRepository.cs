@@ -10,6 +10,8 @@ namespace ParentPicks.DataAccess
     public interface IUserFeedbackRepository
     {
         IEnumerable<UserFeedback> GetAllUserFeedbacks();
+        IEnumerable<UserFeedback> GetUserFeedbacksByUserId(int userId);
+        IEnumerable<UserFeedback> GetUserFeedbacksByProductId(int productId);
         bool AddNewUserFeedback(AddUserFeedbackDTO userFeedbackToAdd);
         bool UpdateUserFeedback(int userFeedbackId, UpdateUserFeedbackDTO userPersonalToUpdate);
         bool DeleteUserFeedback(int userFeedbackId);
