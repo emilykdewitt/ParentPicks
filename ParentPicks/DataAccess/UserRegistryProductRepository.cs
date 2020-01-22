@@ -26,6 +26,22 @@ namespace ParentPicks.DataAccess
             }
         }
 
+        public IEnumerable<UserRegistryProduct> GetUserRegistryProductsByUserId(int userId)
+        {
+            using (var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"Select *
+                            from UserRegistryProduct
+                            where UserId = @userId";
+                var parameters = new
+                {
+                    UserId = userId
+                };
+                var userRegistryProducts = db.Query<UserRegistryProduct>(sql, parameters);
+                return userRegistryProducts;
+            }
+        }
+
         public bool AddUserRegistryProduct(AddUserRegistryProductDTO userRegistryProductToAdd)
         {
             using (var db = new SqlConnection(_connectionString))
