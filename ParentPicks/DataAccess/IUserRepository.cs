@@ -10,6 +10,8 @@ namespace ParentPicks.DataAccess
     public interface IUserRepository
     {
         IEnumerable<User> GetAllUsers();
-        User AddNewUser(AddUserDTO newUser);
+        User GetUserByUserId(int userId);
+        bool AddNewUser(AddUserDTO userToAdd);
+        bool UpdateUser(int userId, UpdateUserDTO userToUpdate);
     }
 }
