@@ -37,7 +37,6 @@ namespace ParentPicks
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserFeedbackRepository, UserFeedbackRepository>();
-            services.AddScoped<IUserPersonalRepository, UserPersonalRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IUserRegistryProductRepository, UserRegistryProductRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -61,6 +60,22 @@ namespace ParentPicks
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                 }));
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.IncludeErrorDetails = true;
+                options.Authority = authSettings["Authority"];
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = authSettings["Issuer"],
+                    ValidateAudience = true,
+                    ValidAudience = authSettings["Audience"],
+                    ValidateLifetime = true
+                };
+            }
+    );
         }   
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
