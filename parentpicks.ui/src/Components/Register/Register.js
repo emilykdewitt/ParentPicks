@@ -2,12 +2,14 @@ import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
+import authRequests from '../Auth/Auth';
 import usersData from '../../helpers/data/usersData';
 
-import './NewUser.scss';
+import './Register.scss';
 
 const defaultUser = {
   email: '',
+  password: '',
   dateCreated: '',
   firebaseKey: '',
   firstName: '',
@@ -16,27 +18,40 @@ const defaultUser = {
   bio: '',
 };
 
-class NewUser extends React.Component {
+class Register extends React.Component {
   state = {
-    email: '',
-    password: '',
     newUser: defaultUser,
   }
 
   formSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = this.state;
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        const saveMe = { ...this.state.newUser };
-        saveMe.firebaseKey = firebase.auth().currentUser.uid;
-        saveMe.dateCreated = moment();
-        usersData.addUserToDatabase(saveMe)
-          .then(() => this.props.history.push('/home'))
-          .catch(err => console.error('unable to save', err));
+    const { newUser } = this.state;
+    const currentTime = moment();
+    const userObj = {
+      dateCreated: currentTime,
+      firebaseKey: firebaseAuth.currentUser.uid,
+      email: newUser.email,
+      password: newUser.password,
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      location: newUser.location,
+      bio: newUser.bio,
+    };
+    authRequests
+      .registerUser(newUser)
+        .then(() => {
+          usersData.addUserToDatabase(userObj)
+            .then((resp) => {
+              this.props.getCurrentUser(resp.data);
+        })
       })
-      .catch(err => console.error('trouble logging in with email', err));
-  }
+      .then(() => {
+        this.props.history.push('/home');
+      })
+      .catch(error => {
+        console.error('there was an error with registration', error);
+      });
+  };
 
   formFieldStringState = (e) => {
     const tempUser = { ...this.state.newUser };
@@ -137,5 +152,5 @@ class NewUser extends React.Component {
   }
 }
 
-export default NewUser;
+export default Register;
 

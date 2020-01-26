@@ -40,6 +40,9 @@ const defaultUser = {
 class App extends React.Component {
   state = {
     authed: false,
+    userObj: {
+      name: ''
+    },
     currentUser: {},
   }
 
@@ -90,12 +93,17 @@ class App extends React.Component {
             <Switch>
               <PublicRoute path="/landing-page" component={LandingPage} authed={authed} />
               <PublicRoute path="/login" authed={authed} component={Login} />
-              <PublicRoute path="/register" authed={authed} component={Register} />
+              <PublicRoute path="/register" 
+                authed={authed} 
+                component={Register} 
+                getCurrentCustomer={this.getCurrentUser}
+              />
+              <PrivateRoute path="/home" authed={authed} component={Home} />
               <PrivateRoute path="/products" authed={authed} component={Products} />
               <PrivateRoute path="/registry" authed={authed} component={Registry} />
               <PrivateRoute path="/picks" authed={authed} component={Picks} />
               <PrivateRoute path="/community" authed={authed} component={Community} />
-              <Redirect from="*" to="/auth" />
+              <Redirect from="*" to="/landing-page" />
             </Switch>
           </React.Fragment>
         </BrowserRouter>

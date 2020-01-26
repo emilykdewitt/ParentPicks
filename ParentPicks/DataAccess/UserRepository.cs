@@ -66,6 +66,7 @@ namespace ParentPicks.DataAccess
                                 ,[LastName]
                                 ,[Location]
                                 ,[Email]
+                                ,[Password]
                                 ,[Bio])
                              VALUES
                                 (@DateCreated
@@ -74,6 +75,7 @@ namespace ParentPicks.DataAccess
                                 , @LastName
                                 , @Location
                                 , @Email
+                                , @Password
                                 , @Bio)";
                 return db.Execute(sql, userToAdd) == 1;
             }
@@ -90,6 +92,7 @@ namespace ParentPicks.DataAccess
                             ,[LastName] = @LastName
                             ,[Location] = @Location
                             ,[Email] = @Email
+                            ,[Password] = @Password
                             ,[Bio] = @Bio)";
                 userToUpdate.Id = userId;
 
