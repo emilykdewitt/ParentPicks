@@ -1,11 +1,12 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import moment from 'moment';
 
 import authRequests from '../Auth/Auth';
-import usersData from '../../helpers/data/usersData';
+import usersData from '../../DataRequests/usersData';
 
-import './Register.scss';
+// import './Register.scss';
 
 const defaultUser = {
   email: '',
@@ -29,7 +30,7 @@ class Register extends React.Component {
     const currentTime = moment();
     const userObj = {
       dateCreated: currentTime,
-      firebaseKey: firebaseAuth.currentUser.uid,
+      firebaseKey: firebase.auth().currentUser.uid,
       email: newUser.email,
       password: newUser.password,
       firstName: newUser.firstName,

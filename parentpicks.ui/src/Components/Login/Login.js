@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import authRequests from '../Auth/Auth';
-import customerData from '../../DataRequests/customersData';
+// import usersData from '../../DataRequests/usersData';
 
 class Login extends React.Component {
   state = {
@@ -19,7 +19,7 @@ class Login extends React.Component {
     authRequests
       .loginUser(user)
       .then(() => {
-        console.error('login user', customerData.getCustomerInfoByEmail(user.email))
+        // console.error('login user', customerData.getCustomerInfoByEmail(user.email))
         this.props.history.push('/home');
       })
       .catch(error => {

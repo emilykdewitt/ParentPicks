@@ -1,5 +1,5 @@
 import axios from 'axios';
-import apiKeys from './apiKeys.json';
+import apiKeys from '../Helpers/apiKeys.json';
 
 const databaseUrl = 'https://localhost:44377/api';
 const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
@@ -30,6 +30,22 @@ const getUserInfoByUserId = uid => new Promise((resolve, reject) => {
     })
     .catch(err => reject(err));
 });
+
+// const getCustomerInfoByEmail = customerEmail => new Promise((resolve, reject) => {
+//   axios.get(`${databaseUrl}/customerPersonal/email/${customerEmail}`)
+//   .then((resp) => {
+//     // const customerPersonal = resp.data;
+//     let customer = {};
+//     customer = resp.data;
+//     console.error('resp data', resp.data);
+//     resolve(customer);
+//   //   customer.push(customerPersonal);
+//   //   resolve(customer);
+//   })
+//     .catch((error) => {
+//       reject(error);
+//     });
+// });
 
 const addUserToDatabase = userObj => axios.post(`${databaseUrl}/users`, userObj);
 

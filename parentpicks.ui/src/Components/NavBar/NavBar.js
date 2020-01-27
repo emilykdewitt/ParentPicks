@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './MyNavbar.scss';
+// import './Navbar.scss';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';

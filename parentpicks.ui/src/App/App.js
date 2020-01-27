@@ -9,13 +9,13 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConnection from '../DataRequests/firebaseConnection';
 
-import Home from '../Components/Home';
-import Auth from '../Components/Auth';
-import NavBar from '../Components/NavBar';
-import LandingPage from '../Components/LandingPage';
-import Login from '../Components/Login';
-import Register from '../Components/Register';
-import Products from '../Components/Products';
+import Home from '../Components/Home/Home';
+// import Auth from '../Components/Auth/Auth';
+import NavBar from '../Components/NavBar/NavBar';
+import LandingPage from '../Components/LandingPage/LandingPage';
+import Login from '../Components/Login/Login';
+import Register from '../Components/Register/Register';
+import Products from '../Components/Products/Products';
 
 import './App.scss';
 
