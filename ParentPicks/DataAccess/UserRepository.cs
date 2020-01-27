@@ -26,19 +26,6 @@ namespace ParentPicks.DataAccess
             }
         }
 
-        public IEnumerable<Product> GetAllProducts()
-        {
-            using (var db = new SqlConnection(_connectionString))
-            {
-                var sql = @"Select *
-                            from [Product]";
-
-                var products = db.Query<Product>(sql);
-
-                return products;
-            }
-        }
-
         public User GetUserByUserId(int id)
         {
             using (var db = new SqlConnection(_connectionString))

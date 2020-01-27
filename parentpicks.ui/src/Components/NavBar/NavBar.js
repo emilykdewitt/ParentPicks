@@ -46,7 +46,7 @@ class MyNavbar extends React.Component {
           <NavItem>
             <NavLink tag={RRNavLink} to='/products'>Products</NavLink>
           </NavItem>
-          <NavItem>
+          {/* <NavItem>
             <NavLink tag={RRNavLink} to='/registry'>Registry</NavLink>
           </NavItem>
           <NavItem>
@@ -54,7 +54,7 @@ class MyNavbar extends React.Component {
           </NavItem>
           <NavItem>
             <NavLink tag={RRNavLink} to='/community'>Community</NavLink>
-          </NavItem>
+          </NavItem> */}
           <NavItem>
             <NavLink onClick={this.logMeOut}>Log out</NavLink>
           </NavItem>

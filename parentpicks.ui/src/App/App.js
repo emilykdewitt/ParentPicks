@@ -9,6 +9,14 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConnection from '../DataRequests/firebaseConnection';
 
+import Home from '../Components/Home';
+import Auth from '../Components/Auth';
+import NavBar from '../Components/NavBar';
+import LandingPage from '../Components/LandingPage';
+import Login from '../Components/Login';
+import Register from '../Components/Register';
+import Products from '../Components/Products';
+
 import './App.scss';
 
 firebaseConnection();
@@ -100,9 +108,9 @@ class App extends React.Component {
               />
               <PrivateRoute path="/home" authed={authed} component={Home} />
               <PrivateRoute path="/products" authed={authed} component={Products} />
-              <PrivateRoute path="/registry" authed={authed} component={Registry} />
+              {/* <PrivateRoute path="/registry" authed={authed} component={Registry} />
               <PrivateRoute path="/picks" authed={authed} component={Picks} />
-              <PrivateRoute path="/community" authed={authed} component={Community} />
+              <PrivateRoute path="/community" authed={authed} component={Community} /> */}
               <Redirect from="*" to="/landing-page" />
             </Switch>
           </React.Fragment>
