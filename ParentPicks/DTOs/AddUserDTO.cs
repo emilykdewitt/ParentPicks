@@ -12,6 +12,7 @@ namespace ParentPicks.DTOs
         public string LastName { get; set; }
         public string Location { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
         public string Bio { get; set; }
         public DateTime DateCreated { get; set; }
         public string FirebaseKey { get; set; }

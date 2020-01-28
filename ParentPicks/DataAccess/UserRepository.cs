@@ -26,19 +26,6 @@ namespace ParentPicks.DataAccess
             }
         }
 
-        public IEnumerable<Product> GetAllProducts()
-        {
-            using (var db = new SqlConnection(_connectionString))
-            {
-                var sql = @"Select *
-                            from [Product]";
-
-                var products = db.Query<Product>(sql);
-
-                return products;
-            }
-        }
-
         public User GetUserByUserId(int id)
         {
             using (var db = new SqlConnection(_connectionString))
@@ -66,6 +53,7 @@ namespace ParentPicks.DataAccess
                                 ,[LastName]
                                 ,[Location]
                                 ,[Email]
+                                ,[Password]
                                 ,[Bio])
                              VALUES
                                 (@DateCreated
@@ -74,6 +62,7 @@ namespace ParentPicks.DataAccess
                                 , @LastName
                                 , @Location
                                 , @Email
+                                , @Password
                                 , @Bio)";
                 return db.Execute(sql, userToAdd) == 1;
             }
@@ -90,6 +79,7 @@ namespace ParentPicks.DataAccess
                             ,[LastName] = @LastName
                             ,[Location] = @Location
                             ,[Email] = @Email
+                            ,[Password] = @Password
                             ,[Bio] = @Bio)";
                 userToUpdate.Id = userId;
 

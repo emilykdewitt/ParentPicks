@@ -1,13 +1,15 @@
 import React from 'react';
-import firebase from 'firebase/app';
+// import firebase from 'firebase/app';
 import 'firebase/auth';
+import moment from 'moment';
 
-import usersData from '../../helpers/data/usersData';
+import authRequests from '../Auth/Auth';
 
-import './NewUser.scss';
+// import './Register.scss';
 
 const defaultUser = {
   email: '',
+  password: '',
   dateCreated: '',
   firebaseKey: '',
   firstName: '',
@@ -16,38 +18,44 @@ const defaultUser = {
   bio: '',
 };
 
-class NewUser extends React.Component {
+class Register extends React.Component {
   state = {
-    email: '',
-    password: '',
     newUser: defaultUser,
   }
 
   formSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = this.state;
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    const { newUser } = this.state;
+    const currentTime = moment();
+    const userObj = {
+      dateCreated: currentTime,
+      email: newUser.email,
+      password: newUser.password,
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      location: newUser.location,
+      bio: newUser.bio,
+    };
+    authRequests
+      .registerUser(userObj)
       .then(() => {
-        const saveMe = { ...this.state.newUser };
-        saveMe.firebaseKey = firebase.auth().currentUser.uid;
-        saveMe.dateCreated = moment();
-        usersData.addUserToDatabase(saveMe)
-          .then(() => this.props.history.push('/home'))
-          .catch(err => console.error('unable to save', err));
+        this.props.history.push('/home');
       })
-      .catch(err => console.error('trouble logging in with email', err));
-  }
+      .catch(error => {
+        console.error('there was an error with registration', error);
+      });
+  };
 
-  formFieldStringState = (e) => {
-    const tempUser = { ...this.state.newUser };
-    tempUser[e.target.id] = e.target.value;
-    this.setState({ newUser: tempUser });
-  }
+  // formFieldStringState = (e) => {
+  //   const tempUser = { ...this.state.newUser };
+  //   tempUser[e.target.id] = e.target.value;
+  //   this.setState({ newUser: tempUser });
+  // }
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value,
-    });
+    const tempUser = { ...this.state.newUser };
+    tempUser[e.target.id] = e.target.value;
+    this.setState({ newUser: tempUser});
   };
 
   render() {
@@ -85,9 +93,9 @@ class NewUser extends React.Component {
             <input
             type="text"
             className="form-control"
-            id="name"
+            id="firstName"
             value={newUser.firstName}
-            onChange={this.formFieldStringState}
+            onChange={this.handleChange}
             placeholder="John"
             required
             />
@@ -97,9 +105,9 @@ class NewUser extends React.Component {
             <input
             type="text"
             className="form-control"
-            id="name"
+            id="lastName"
             value={newUser.lastName}
-            onChange={this.formFieldStringState}
+            onChange={this.handleChange}
             placeholder="Doe"
             required
             />
@@ -111,8 +119,8 @@ class NewUser extends React.Component {
             className="form-control"
             id="location"
             value={newUser.location}
-            onChange={this.formFieldStringState}
-            placeholder="Doe"
+            onChange={this.handleChange}
+            placeholder="Nashville, Tennessee"
             required
             />
           </div>
@@ -123,7 +131,7 @@ class NewUser extends React.Component {
             className="form-control"
             id="bio"
             value={newUser.bio}
-            onChange={this.formFieldStringState}
+            onChange={this.handleChange}
             placeholder="Expecting first child in June 2020!"
             required
             />
@@ -137,5 +145,5 @@ class NewUser extends React.Component {
   }
 }
 
-export default NewUser;
+export default Register;
 
