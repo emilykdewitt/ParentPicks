@@ -62,7 +62,11 @@ class MyNavbar extends React.Component {
         );
       }
       return (
-        <Nav className="ml-auto" navbar />
+        <Nav className="ml-auto" navbar>
+          <NavItem>
+          <NavLink tag={RRNavLink} to='/Login'>Log In</NavLink>
+          </NavItem>
+        </Nav>
       );
     };
     return (

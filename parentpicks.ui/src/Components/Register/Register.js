@@ -1,10 +1,9 @@
 import React from 'react';
-import firebase from 'firebase/app';
+// import firebase from 'firebase/app';
 import 'firebase/auth';
 import moment from 'moment';
 
 import authRequests from '../Auth/Auth';
-import usersData from '../../DataRequests/usersData';
 
 // import './Register.scss';
 
@@ -30,7 +29,6 @@ class Register extends React.Component {
     const currentTime = moment();
     const userObj = {
       dateCreated: currentTime,
-      firebaseKey: firebase.auth().currentUser.uid,
       email: newUser.email,
       password: newUser.password,
       firstName: newUser.firstName,
@@ -39,13 +37,7 @@ class Register extends React.Component {
       bio: newUser.bio,
     };
     authRequests
-      .registerUser(newUser)
-        .then(() => {
-          usersData.addUserToDatabase(userObj)
-            .then((resp) => {
-              this.props.getCurrentUser(resp.data);
-        })
-      })
+      .registerUser(userObj)
       .then(() => {
         this.props.history.push('/home');
       })
@@ -54,16 +46,16 @@ class Register extends React.Component {
       });
   };
 
-  formFieldStringState = (e) => {
-    const tempUser = { ...this.state.newUser };
-    tempUser[e.target.id] = e.target.value;
-    this.setState({ newUser: tempUser });
-  }
+  // formFieldStringState = (e) => {
+  //   const tempUser = { ...this.state.newUser };
+  //   tempUser[e.target.id] = e.target.value;
+  //   this.setState({ newUser: tempUser });
+  // }
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value,
-    });
+    const tempUser = { ...this.state.newUser };
+    tempUser[e.target.id] = e.target.value;
+    this.setState({ newUser: tempUser});
   };
 
   render() {
@@ -101,9 +93,9 @@ class Register extends React.Component {
             <input
             type="text"
             className="form-control"
-            id="name"
+            id="firstName"
             value={newUser.firstName}
-            onChange={this.formFieldStringState}
+            onChange={this.handleChange}
             placeholder="John"
             required
             />
@@ -113,9 +105,9 @@ class Register extends React.Component {
             <input
             type="text"
             className="form-control"
-            id="name"
+            id="lastName"
             value={newUser.lastName}
-            onChange={this.formFieldStringState}
+            onChange={this.handleChange}
             placeholder="Doe"
             required
             />
@@ -127,8 +119,8 @@ class Register extends React.Component {
             className="form-control"
             id="location"
             value={newUser.location}
-            onChange={this.formFieldStringState}
-            placeholder="Doe"
+            onChange={this.handleChange}
+            placeholder="Nashville, Tennessee"
             required
             />
           </div>
@@ -139,7 +131,7 @@ class Register extends React.Component {
             className="form-control"
             id="bio"
             value={newUser.bio}
-            onChange={this.formFieldStringState}
+            onChange={this.handleChange}
             placeholder="Expecting first child in June 2020!"
             required
             />

@@ -52,31 +52,16 @@ namespace ParentPicks
                         ValidAudience = authSettings["Audience"],
                         ValidateLifetime = true
                     };
-                }
-                );
-            services.AddCors(o => o.AddPolicy("MyPolicy", builder => 
+                });
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
                 {
                     builder.AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                 }));
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.IncludeErrorDetails = true;
-                options.Authority = authSettings["Authority"];
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidIssuer = authSettings["Issuer"],
-                    ValidateAudience = true,
-                    ValidAudience = authSettings["Audience"],
-                    ValidateLifetime = true
-                };
-            }
-    );
-        }   
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
