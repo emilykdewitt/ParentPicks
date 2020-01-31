@@ -1,74 +1,79 @@
 import React from 'react';
 import { Container, Row, Col, ButtonGroup, Button, Input } from 'reactstrap';
 
-import productsData from '../../DataRequests/productsData';
+import userRegistryProductData from '../../DataRequests/userRegistryProductData';
 import categoriesData from '../../DataRequests/categoriesData';
 
-import ProductCard from '../../Components/ProductCard/ProductCard';
+import RegistryProductCard from '../RegistryProductCard/RegistryProductCard';
 
-class Products extends React.Component {
+class MyRegistry extends React.Component {
     state = {
-        products: [],
-        filteredProducts: [],
-        categories: [],
+        myRegistryProducts: [],
+        filteredRegistryProducts: [],
+        categories: []
     }
 
     componentDidMount() {
-        productsData.getProducts()
-            .then(products => this.setState({ products, filteredProducts: products }))
-            .catch(err => console.error('no products for you', err));
+        const userId = sessionStorage.getItem('userId');
+        userRegistryProductData.getUserRegistryProductsForUser(1)
+            .then(myRegistryProducts => this.setState({ myRegistryProducts, filteredRegistryProducts: myRegistryProducts }))
+            .catch(err => console.error('no registry products for you', err));
         categoriesData.getAllCategories().then(data => {
             let allCategories = [...data];
             this.setState({ categories: allCategories });
         });
     }
 
-    getProducts = () => {
-        productsData.getProducts()
-            .then(products => this.setState({ products, filteredProducts: products }))
-            .catch(err => console.error('no products for you', err));
+    getRegistryProducts = () => {
+        const userId = sessionStorage.getItem('userId');
+        userRegistryProductData.getUserRegistryProductsForUser(1)
+            .then(myRegistryProducts => this.setState({ myRegistryProducts, filteredRegistryProducts: myRegistryProducts }))
+            .catch(err => console.error('no registry products for you', err));
     }
 
     filterProductsBySearchInput = (e) => {
         e.preventDefault();
         let resultProducts = [];
-        const products = this.state.products;
+        const myRegistryProducts = this.state.myRegistryProducts;
         const searchTerm = e.target.value.toLowerCase();
-        products.forEach(product => {
+        myRegistryProducts.forEach(product => {
           const desc = product.name.toLowerCase();
           if (desc.includes(searchTerm) && searchTerm !== "") {
             resultProducts.push(product);
           }
-          this.setState({ filteredProducts: resultProducts });
-          this.makeProducts(this.state.filteredProducts);
+          this.setState({ filteredRegistryProducts: resultProducts });
+          this.makeProducts(this.state.filteredRegistryProducts);
         });
     }
 
     filterProductsByCategory = (e) => {
         e.preventDefault();
         const buttonCategory = e.target.id;
-        const { products } = this.state;
-        this.setState({ filteredProducts: products });
-        const filteredResults = this.state.products.filter(product => product.categoryId == buttonCategory);
-        this.setState({ filteredProducts: filteredResults });
+        const { myRegistryProducts } = this.state;
+        this.setState({ filteredRegistryProducts: myRegistryProducts});
+        const filteredResults = this.state.myRegistryProducts.filter(product => product.categoryId == buttonCategory);
+        this.setState({ filteredRegistryProducts: filteredResults });
     }
 
-    makeProducts = (results) => {
+    makeRegistryProducts = (results) => {
         return results.map(product => (
-            <ProductCard
+            <RegistryProductCard 
                 key={product.id}
                 categoryId={product.categoryId}
                 name={product.name}
                 brand={product.brand}
                 description={product.description}
                 productImageUrl={product.productImageUrl}
+                quantityNeeded={product.quantityNeeded}
+                starRating={product.starRating}
+                className="registryProductCard"
             />
         ))
     }
 
     render() {
-        const makeProductCards = (this.state.filteredProducts.length > 0 ? this.makeProducts(this.state.filteredProducts) : 
-            this.makeProducts(this.state.products));
+        const makeRegistryItemCards = (this.state.filteredRegistryProducts.length > 0 ? this.makeRegistryProducts(this.state.filteredRegistryProducts) : 
+            this.makeRegistryProducts(this.state.myRegistryProducts));
 
         const makeCategories = this.state.categories.map(category => (
             <Button
@@ -93,20 +98,21 @@ class Products extends React.Component {
                   <Row>
                     <ButtonGroup vertical id="categoryBtnContainer">
                       {makeCategories}
-                      <Button id="showAllBtn" onClick={this.getCategories}>Show All</Button>
+                      <Button id="showAllBtn" onClick={this.getRegistryProducts}>Show All</Button>
                     </ButtonGroup>
                   </Row>
                 </Col>
                 <Col xs="12" sm="12" m="9" lg="9">
-                  <h1>Products</h1>
+                  <h1>Registry Products</h1>
                   <Row>
-                    {makeProductCards}
+                    {makeRegistryItemCards}
                   </Row>
                 </Col>
               </Row>
             </Container>
-          )
+        );
     }
 }
 
-export default Products;
+export default MyRegistry;
+

@@ -1,13 +1,13 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 
-import productShape from '../../Helpers/productShape';
+import registryProductShape from '../../Helpers/registryProductShape';
 
-import './ProductCard.scss';
+// import './ProductCard.scss';
 
-class ProductCard extends React.Component {
+class RegistryProductCard extends React.Component {
   static propTypes = {
-    product: productShape.productCardShape,
+    registryProduct: registryProductShape.registryProductCardShape,
   }
 
   render() {
@@ -20,7 +20,8 @@ class ProductCard extends React.Component {
             <img className="card-img-top img-fluid" src={product.productImageUrl} alt="tralalala" />
             <h5 className="card-title">{product.name}</h5>
             <h5 className="card-title">{product.brand}</h5>
-            <p className="card-text">{product.description}</p>
+            <p className="card-text">Rating:{product.starRating}</p>
+            <p className="card-text">Quantity Needed:{product.quantityNeeded}</p>
             {/* <Link className="btn btn-info" to={addLink}>Add Activity</Link> */}
           </div>
         </div>
@@ -29,4 +30,4 @@ class ProductCard extends React.Component {
   }
 }
 
-export default ProductCard;
+export default RegistryProductCard;
