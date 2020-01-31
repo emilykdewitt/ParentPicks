@@ -22,14 +22,14 @@ namespace ParentPicks.Controllers
 
         //GET: api/UserRegistryProduct
         [HttpGet("{userId}")]
-        public IEnumerable<UserRegistryProduct> GetByUserId(int userId)
+        public IEnumerable<ProductWithQuantityAndRatingDTO> GetByUserId(int userId)
         {
             return _repo.GetUserRegistryProductsByUserId(userId);
         }
 
         //POST new user registry product
         [HttpPost]
-        public IEnumerable<UserRegistryProduct> AddUserRegistryProduct(AddUserRegistryProductDTO userRegistryProductToAdd)
+        public IEnumerable<ProductWithQuantityAndRatingDTO> AddUserRegistryProduct(AddUserRegistryProductDTO userRegistryProductToAdd)
         {
             _repo.AddUserRegistryProduct(userRegistryProductToAdd);
             return _repo.GetUserRegistryProductsByUserId(userRegistryProductToAdd.UserId);

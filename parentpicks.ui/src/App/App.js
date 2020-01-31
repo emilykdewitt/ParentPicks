@@ -16,6 +16,7 @@ import LandingPage from '../Components/LandingPage/LandingPage';
 import Login from '../Components/Login/Login';
 import Register from '../Components/Register/Register';
 import Products from '../Components/Products/Products';
+import MyRegistry from '../Components/MyRegistry/MyRegistry';
 
 import './App.scss';
 
@@ -108,9 +109,9 @@ class App extends React.Component {
               />
               <PrivateRoute path="/home" authed={authed} component={Home} />
               <PrivateRoute path="/products" authed={authed} component={Products} />
-              {/* <PrivateRoute path="/registry" authed={authed} component={Registry} />
-              <PrivateRoute path="/picks" authed={authed} component={Picks} />
-              <PrivateRoute path="/community" authed={authed} component={Community} /> */}
+              <PrivateRoute path="/my-registry" authed={authed} component={MyRegistry} />
+              {/* <PrivateRoute path="/picks" authed={authed} component={Picks} /> */}
+              {/* <PrivateRoute path="/community" authed={authed} component={Community} /> */}
               <Redirect from="*" to="/landing-page" />
             </Switch>
           </React.Fragment>

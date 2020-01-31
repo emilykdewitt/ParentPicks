@@ -77,7 +77,7 @@ class Products extends React.Component {
               className="categoryButton"
               onClick={this.filterProductsByCategory}
             >
-              {category.name}
+              {category.categoryName}
             </Button>
           ))
 
@@ -85,16 +85,16 @@ class Products extends React.Component {
             <Container>
               <Row>
                 <Col xs="12" s="12" m="3" lg="3" align="center" id="searchAndCategoryContainer">
-                  <form className="form-inline my-2 my-lg-0" id="searchIconAndInput">
-                    <Input id="productSearchInput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={this.filterProductsBySearchInput} />
-                  </form>
                   <Row>
-                    <Col xs="3" id="shopProductCategoriesContainer">
-                      <ButtonGroup vertical id="categoryBtnContainer">
-                        {makeCategories}
-                        <Button id="showAllBtn" onClick={this.getCategories}>Show All</Button>
-                      </ButtonGroup>
-                    </Col>
+                    <form className="form-inline my-2 my-lg-0" id="searchIconAndInput">
+                      <Input id="productSearchInput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={this.filterProductsBySearchInput} />
+                    </form>
+                  </Row>
+                  <Row>
+                    <ButtonGroup vertical id="categoryBtnContainer">
+                      {makeCategories}
+                      <Button id="showAllBtn" onClick={this.getCategories}>Show All</Button>
+                    </ButtonGroup>
                   </Row>
                 </Col>
                 <Col xs="12" sm="12" m="9" lg="9">

@@ -38,7 +38,8 @@ class Register extends React.Component {
     };
     authRequests
       .registerUser(userObj)
-      .then(() => {
+      .then((user) => {
+        sessionStorage.setItem('userId',user.id);
         this.props.history.push('/home');
       })
       .catch(error => {

@@ -7,7 +7,7 @@ import './ProductCard.scss';
 
 class ProductCard extends React.Component {
   static propTypes = {
-    product: productShape.productCardShape,
+    registryItem: registryItemShape.registryItemCardShape,
   }
 
   render() {

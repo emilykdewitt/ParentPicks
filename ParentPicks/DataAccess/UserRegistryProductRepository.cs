@@ -26,18 +26,24 @@ namespace ParentPicks.DataAccess
             }
         }
 
-        public IEnumerable<UserRegistryProduct> GetUserRegistryProductsByUserId(int userId)
+        public IEnumerable<ProductWithQuantityAndRatingDTO> GetUserRegistryProductsByUserId(int userId)
         {
             using (var db = new SqlConnection(_connectionString))
             {
-                var sql = @"Select *
-                            from UserRegistryProduct
-                            where UserId = @userId";
+                var sql = @"SELECT P.*, URP.QuantityNeeded,
+                            (select avg(UF.StarRating) from UserFeedback UF where UF.ProductId = P.Id) StarRating
+                            from UserRegistryProduct URP
+                            join Product P
+                            on URP.ProductId = P.Id
+                            join [User] U on U.id = URP.UserId
+                            where U.Id = @userId";
+
                 var parameters = new
                 {
                     UserId = userId
                 };
-                var userRegistryProducts = db.Query<UserRegistryProduct>(sql, parameters);
+                
+                var userRegistryProducts = db.Query<ProductWithQuantityAndRatingDTO>(sql, parameters);
                 return userRegistryProducts;
             }
         }
@@ -84,6 +90,5 @@ namespace ParentPicks.DataAccess
                 return db.Execute(sql, new { userRegistryProductId }) == 1;
             }
         }
-
     }
 }

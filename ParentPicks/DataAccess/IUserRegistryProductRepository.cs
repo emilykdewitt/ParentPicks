@@ -10,10 +10,9 @@ namespace ParentPicks.DataAccess
     public interface IUserRegistryProductRepository
     {
         IEnumerable<UserRegistryProduct> GetAllUserRegistryProducts();
-        IEnumerable<UserRegistryProduct> GetUserRegistryProductsByUserId(int userId);
+        IEnumerable<ProductWithQuantityAndRatingDTO> GetUserRegistryProductsByUserId(int userId);
         bool AddUserRegistryProduct(AddUserRegistryProductDTO userRegistryProductToAdd);
         bool UpdateUserRegistryProduct(int userRegistryProductId, UpdateUserRegistryProductDTO userRegistryProductToUpdate);
         bool DeleteUserRegistryProduct(int userRegistryProductId);
-
     }
 }
