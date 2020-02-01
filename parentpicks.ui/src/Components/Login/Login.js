@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import authRequests from '../Auth/Auth';
+import usersData from '../../DataRequests/usersData';
 // import usersData from '../../DataRequests/usersData';
 
 class Login extends React.Component {
@@ -18,12 +19,14 @@ class Login extends React.Component {
     e.preventDefault();
     authRequests
       .loginUser(user)
-      .then(() => {
-        // console.error('login user', customerData.getCustomerInfoByEmail(user.email))
+      .then(usersData.getUserByFirebaseKey)
+      .then((user) => {
+        sessionStorage.setItem('userId', user.id);
+        console.error(user.id);
         this.props.history.push('/home');
       })
       .catch(error => {
-        console.error('there was an error in registering', error);
+        console.error('there was an error in logging in', error);
       });
   };
 

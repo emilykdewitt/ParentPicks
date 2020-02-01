@@ -13,5 +13,6 @@ namespace ParentPicks.DataAccess
         User GetUserByUserId(int userId);
         bool AddNewUser(AddUserDTO userToAdd);
         bool UpdateUser(int userId, UpdateUserDTO userToUpdate);
+        User GetUserByFirebaseUserId(string firebaseId);
     }
 }

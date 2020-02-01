@@ -21,13 +21,21 @@ namespace ParentPicks.Controllers
             _repo = repo;
         }
 
+        [HttpGet("me")]
+        public IActionResult GetLoggedInUser()
+        {
+            var user = _repo.GetUserByFirebaseUserId(UserId);
+
+            return Ok(user);
+        }
+
         //GET: api/users
         [HttpGet]
         public IActionResult Get()
         {
             var users = _repo.GetAllUsers();
 
-            return Ok(users.Select(u => new { u.FirstName,u.LastName,u.Location,u.Email,u.Bio }));
+            return Ok(users.Select(u => new { u.FirstName, u.LastName, u.Location, u.Email, u.Bio }));
         }
 
         // GET: api/users/3

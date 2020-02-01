@@ -15,7 +15,7 @@ class MyRegistry extends React.Component {
 
     componentDidMount() {
         const userId = sessionStorage.getItem('userId');
-        userRegistryProductData.getUserRegistryProductsForUser(1)
+        userRegistryProductData.getUserRegistryProductsForUser(userId)
             .then(myRegistryProducts => this.setState({ myRegistryProducts, filteredRegistryProducts: myRegistryProducts }))
             .catch(err => console.error('no registry products for you', err));
         categoriesData.getAllCategories().then(data => {
@@ -103,7 +103,7 @@ class MyRegistry extends React.Component {
                   </Row>
                 </Col>
                 <Col xs="12" sm="12" m="9" lg="9">
-                  <h1>Registry Products</h1>
+                  <h1>My Registry</h1>
                   <Row>
                     {makeRegistryItemCards}
                   </Row>

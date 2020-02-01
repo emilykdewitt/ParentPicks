@@ -26,22 +26,6 @@ namespace ParentPicks.DataAccess
             }
         }
 
-        public IEnumerable<UserFeedback> GetUserFeedbacksByUserId(int userId)
-        {
-            using (var db = new SqlConnection(_connectionString))
-            {
-                var sql = @"Select *
-                            from UserFeedback
-                            where UserId = @userId";
-                var parameters = new
-                {
-                    UserId = userId
-                };
-                var userFeedbacks = db.Query<UserFeedback>(sql, parameters);
-                return userFeedbacks;
-            }
-        }
-
         public IEnumerable<UserFeedback> GetUserFeedbacksByProductId(int productId)
         {
             using (var db = new SqlConnection(_connectionString))
@@ -57,6 +41,28 @@ namespace ParentPicks.DataAccess
                 return userFeedbacks;
             }
         }
+
+        public IEnumerable<ProductWithUserFeedbackDTO> GetUserFeedbacksByUserId(int userId)
+        {
+            using (var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"SELECT UF.*, P.Id, P.CategoryId, P.[Name], P.Brand, P.ProductImageUrl
+                            FROM UserFeedback UF
+                            join Product P
+                            on UF.ProductId = P.Id
+                            join [User] U on U.Id = UF.UserId
+                            where U.Id = @userId";
+
+                var parameters = new
+                {
+                    UserId = userId
+                };
+
+                var userFeedbacks = db.Query<ProductWithUserFeedbackDTO>(sql, parameters);
+                return userFeedbacks;
+            }
+        }
+
 
         public bool AddNewUserFeedback(AddUserFeedbackDTO userFeedbackToAdd)
         {
