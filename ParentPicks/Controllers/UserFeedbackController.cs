@@ -29,7 +29,7 @@ namespace ParentPicks.Controllers
 
         //GET all user feedback by user id
         [HttpGet("user/{userId}")]
-        public IEnumerable<UserFeedback> GetUserFeedbacksByUserId(int userId)
+        public IEnumerable<ProductWithUserFeedbackDTO> GetUserFeedbacksByUserId(int userId)
         {
             return _repo.GetUserFeedbacksByUserId(userId);
         }
@@ -43,7 +43,7 @@ namespace ParentPicks.Controllers
 
         //POST new user feedback
         [HttpPost]
-        public IEnumerable<UserFeedback> AddUserFeedback(AddUserFeedbackDTO userFeedbackToAdd)
+        public IEnumerable<ProductWithUserFeedbackDTO> AddUserFeedback(AddUserFeedbackDTO userFeedbackToAdd)
         {
             _repo.AddNewUserFeedback(userFeedbackToAdd);
             return _repo.GetUserFeedbacksByUserId(userFeedbackToAdd.UserId);

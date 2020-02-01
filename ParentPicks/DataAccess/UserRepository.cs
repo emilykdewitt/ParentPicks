@@ -26,6 +26,23 @@ namespace ParentPicks.DataAccess
             }
         }
 
+        public User GetUserByFirebaseUserId(string firebaseId)
+        {
+            using (var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"SELECT *
+                            from [User]
+                            where [firebasekey] = @id";
+                var parameters = new
+                {
+                    Id = firebaseId
+                };
+                var user = db.QueryFirstOrDefault<User>(sql, parameters);
+                return user;
+            }
+        }
+
+
         public User GetUserByUserId(int id)
         {
             using (var db = new SqlConnection(_connectionString))
