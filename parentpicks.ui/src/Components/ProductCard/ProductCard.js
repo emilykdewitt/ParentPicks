@@ -1,5 +1,7 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Button } from 'reactstrap';
 
 import productShape from '../../Helpers/productShape';
 
@@ -12,7 +14,7 @@ class ProductCard extends React.Component {
 
   render() {
     const product = {...this.props};
-    // const addLink = `/add/${product.id}`;
+    const singleProductLink = `/products/${product.id}`;
     return (
       <div className="productCard col-lg-4 col-md-6 col-sm-12">
         <div className="card">
@@ -21,7 +23,7 @@ class ProductCard extends React.Component {
             <h5 className="card-title">{product.name}</h5>
             <h5 className="card-title">{product.brand}</h5>
             <p className="card-text">{product.description}</p>
-            {/* <Link className="btn btn-info" to={addLink}>Add Activity</Link> */}
+            <Link className="btn btn-info editActivityBtn" to={singleProductLink}>View Product Detail</Link>
           </div>
         </div>
       </div>

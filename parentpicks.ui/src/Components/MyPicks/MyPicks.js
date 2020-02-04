@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, ButtonGroup, Button, Input } from 'reactstrap';
 
-import userPicksData from '../../DataRequests/userPicksData';
+import userFeedbackData from '../../DataRequests/userFeedbackData';
 import categoriesData from '../../DataRequests/categoriesData';
 import MyPickCard from '../MyPickCard/MyPickCard';
 
@@ -15,7 +15,7 @@ class MyPicks extends React.Component {
     componentDidMount() {
         const userId = sessionStorage.getItem('userId');
         console.error(userId);
-        userPicksData.getUserFeedbacksForUser(userId)
+        userFeedbackData.getUserFeedbacksForUser(userId)
             .then(myPicks => this.setState({ myPicks, filteredPicks: myPicks }))
             .catch(err => console.error('no feedback for you', err));
         categoriesData.getAllCategories().then(data => {
@@ -26,7 +26,7 @@ class MyPicks extends React.Component {
 
     getMyPicks = () => {
         const userId = sessionStorage.getItem('userId');
-        userPicksData.getUserFeedbacksForUser(1003)
+        userFeedbackData.getUserFeedbacksForUser(1003)
             .then(myPicks => this.setState({ myPicks, filteredPicks: myPicks }))
             .catch(err => console.error('no feedback for you', err));
     }

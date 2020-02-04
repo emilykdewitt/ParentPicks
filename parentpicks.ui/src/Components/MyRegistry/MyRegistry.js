@@ -56,19 +56,23 @@ class MyRegistry extends React.Component {
     }
 
     makeRegistryProducts = (results) => {
+      if (results.length > 0) {
         return results.map(product => (
-            <RegistryProductCard 
-                key={product.id}
-                categoryId={product.categoryId}
-                name={product.name}
-                brand={product.brand}
-                description={product.description}
-                productImageUrl={product.productImageUrl}
-                quantityNeeded={product.quantityNeeded}
-                starRating={product.starRating}
-                className="registryProductCard"
-            />
+          <RegistryProductCard
+            key={product.id}
+            categoryId={product.categoryId}
+            name={product.name}
+            brand={product.brand}
+            description={product.description}
+            productImageUrl={product.productImageUrl}
+            quantityNeeded={product.quantityNeeded}
+            starRating={product.starRating}
+            className="registryProductCard"
+          />
         ))
+      } else {
+        return <p>You have not added any products to your registry! Return to the products page to begin adding items.</p>
+      };
     }
 
     render() {
