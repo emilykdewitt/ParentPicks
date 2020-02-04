@@ -10,7 +10,13 @@ const getProducts = () => new Promise((resolve, reject) => {
     .catch(err => reject(err));
 });
 
-const getSingleProduct = productId => axios.get(`${databaseUrl}/products/${productId}`);
+const getSingleProduct = productId => new Promise((resolve, reject) => {
+  axios.get(`${databaseUrl}/${productId}`)
+  .then((res) => {
+    resolve(res.data);
+  })
+  .catch((err) => reject(err));
+});
 
 export default {
   getProducts,

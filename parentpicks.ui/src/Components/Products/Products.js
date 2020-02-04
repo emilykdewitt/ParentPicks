@@ -57,6 +57,7 @@ class Products extends React.Component {
         return results.map(product => (
             <ProductCard
                 key={product.id}
+                id={product.id}
                 categoryId={product.categoryId}
                 name={product.name}
                 brand={product.brand}
