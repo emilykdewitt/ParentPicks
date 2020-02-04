@@ -9,8 +9,18 @@ const getUserFeedbacksForUser= userId => new Promise((resolve, reject) => {
       .catch((error) => {
         reject(error);
       });
-  });
+  }
+);
+
+const getProductFeedbackByProductId = productId => new Promise((resolve, reject) => {
+  axios.get(`${databaseUrl}/product/${productId}`).then((result) => {
+    resolve(result.data);
+  })
+    .catch((error) => {
+      reject(error);
+    });
+});
 
 // post new product to user registry
 
-export default { getUserFeedbacksForUser };
+export default { getUserFeedbacksForUser, getProductFeedbackByProductId };

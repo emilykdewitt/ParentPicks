@@ -21,7 +21,7 @@ class ProductCard extends React.Component {
             <h5 className="card-title">{product.name}</h5>
             <h5 className="card-title">{product.brand}</h5>
             <p className="card-text">{product.description}</p>
-            {/* <Link className="btn btn-info" to={addLink}>Add Activity</Link> */}
+            <p className="btn btn-info" id={product.id}>View Product Details</p>
           </div>
         </div>
       </div>

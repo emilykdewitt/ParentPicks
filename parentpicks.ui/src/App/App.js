@@ -18,6 +18,7 @@ import Register from '../Components/Register/Register';
 import Products from '../Components/Products/Products';
 import MyRegistry from '../Components/MyRegistry/MyRegistry';
 import MyPicks from '../Components/MyPicks/MyPicks';
+import ProductDetail from '../Components/ProductDetail/ProductDetail';
 
 import './App.scss';
 
@@ -110,6 +111,7 @@ class App extends React.Component {
               />
               <PrivateRoute path="/home" authed={authed} component={Home} />
               <PrivateRoute path="/products" authed={authed} component={Products} />
+              <PrivateRoute path='/products/:id' component={ProductDetail} authed={authed} />
               <PrivateRoute path="/my-registry" authed={authed} component={MyRegistry} />
               <PrivateRoute path="/my-picks" authed={authed} component={MyPicks} />
               {/* <PrivateRoute path="/community" authed={authed} component={Community} /> */}
