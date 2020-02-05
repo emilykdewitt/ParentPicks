@@ -21,6 +21,6 @@ const getProductFeedbackByProductId = productId => new Promise((resolve, reject)
     });
 });
 
-// post new product to user registry
+const addUserFeedback = userFeedbackObj => axios.post(`${databaseUrl}`, userFeedbackObj);
 
-export default { getUserFeedbacksForUser, getProductFeedbackByProductId };
+export default { getUserFeedbacksForUser, getProductFeedbackByProductId, addUserFeedback };

@@ -5,6 +5,8 @@ import productsData from '../../DataRequests/productsData';
 import userFeedbackData from '../../DataRequests/userFeedbackData';
 import { Col, Row, Container } from 'reactstrap';
 import SingleUserFeedback from '../SingleUserFeedback/SingleUserFeedback';
+import AddUserFeedback from '../AddUserFeedback/AddUserFeedback';
+
 const defaultProduct = {
     categoryId: '',
     name: '',
@@ -17,6 +19,7 @@ class ProductDetail extends React.Component {
     state = {
         product: '',
         userFeedbacks: [],
+        currentUserId: ''
     }
 
     componentDidMount() {
@@ -31,6 +34,8 @@ class ProductDetail extends React.Component {
                 this.setState({ userFeedbacks: userFeedbackResults })
             })
             .catch((err) => console.error('no productReviews returned', err));
+        const userId = sessionStorage.getItem('userId');
+        this.setState({ currentUser: userId })
     }
 
     render() {
@@ -38,21 +43,19 @@ class ProductDetail extends React.Component {
         // const { defaultUserFeedbacks } = this.state;
         // const productsLink = '/products';
 
-        const makeUserFeedbackList = () => {
-            const feedbackList = this.state.userFeedbacks;
-            return feedbackList.map(singleFeedback => (
-                <SingleUserFeedback
-                    key={singleFeedback.id}
-                    id={singleFeedback.id}
-                    userId={singleFeedback.userId}
-                    productId={singleFeedback.productId}
-                    starRating={singleFeedback.starRating}
-                    review={singleFeedback.review}
-                />
-            ))
-        }
+        const makeUserFeedbackList = this.state.userFeedbacks.map(singleFeedback => (
+            <SingleUserFeedback
+                key={singleFeedback.id}
+                id={singleFeedback.id}
+                userId={singleFeedback.userId}
+                productId={singleFeedback.productId}
+                starRating={singleFeedback.starRating}
+                review={singleFeedback.review}
+            />
+        ))
 
         return (
+            <Container>
                 <div className="SingleProductView">
                     <h2>Single Product View for {product.name}</h2>
                     <Container>
@@ -64,7 +67,11 @@ class ProductDetail extends React.Component {
                                 <p>Description: {product.description}</p>
                             </Col>
                             <Col>
-                                <p>This is where rating and review input fields will go</p>
+                                <AddUserFeedback 
+                                    key={product.id}
+                                    userId={this.state.currentUserId}
+                                    productId={product.id}
+                                />
                             </Col>
                         </Row>
                         <Row>
@@ -78,6 +85,7 @@ class ProductDetail extends React.Component {
                         </Row>
                     </Container>
                 </div>
+            </Container>
         );
     }
 }
