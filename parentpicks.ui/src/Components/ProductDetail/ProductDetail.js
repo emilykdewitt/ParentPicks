@@ -6,6 +6,7 @@ import userFeedbackData from '../../DataRequests/userFeedbackData';
 import { Col, Row, Container } from 'reactstrap';
 import SingleUserFeedback from '../SingleUserFeedback/SingleUserFeedback';
 import AddUserFeedback from '../AddUserFeedback/AddUserFeedback';
+import AddToRegistry from '../AddToRegistry/AddToRegistry';
 
 const defaultProduct = {
     categoryId: '',
@@ -80,7 +81,10 @@ class ProductDetail extends React.Component {
                                 {makeUserFeedbackList}
                             </Col>
                             <Col>
-                                <p>This is where the input and button to add to registry will go</p>
+                                <AddToRegistry 
+                                    userId={this.state.currentUserId}
+                                    productId={product.id}
+                                />
                             </Col>
                         </Row>
                     </Container>

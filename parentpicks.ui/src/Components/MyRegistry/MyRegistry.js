@@ -26,9 +26,18 @@ class MyRegistry extends React.Component {
 
     getRegistryProducts = () => {
         const userId = sessionStorage.getItem('userId');
-        userRegistryProductData.getUserRegistryProductsForUser(1)
-            .then(myRegistryProducts => this.setState({ myRegistryProducts, filteredRegistryProducts: myRegistryProducts }))
+        userRegistryProductData.getUserRegistryProductsForUser(userId)
+            .then(myRegistryProducts => {
+              this.setState({ myRegistryProducts, filteredRegistryProducts: myRegistryProducts })
+              console.error(myRegistryProducts);
+            })
             .catch(err => console.error('no registry products for you', err));
+    }
+
+    deleteRegistryProduct = (userRegProdId) => {
+      userRegistryProductData.deleteRegistryProduct(userRegProdId)
+        .then(() => this.getRegistryProducts())
+        .catch(err => console.error('unable to delete'));
     }
 
     filterProductsBySearchInput = (e) => {
@@ -61,12 +70,14 @@ class MyRegistry extends React.Component {
           <RegistryProductCard
             key={product.id}
             categoryId={product.categoryId}
+            productId={product.id}
             name={product.name}
             brand={product.brand}
             description={product.description}
             productImageUrl={product.productImageUrl}
             quantityNeeded={product.quantityNeeded}
             starRating={product.starRating}
+            deleteRegistryProduct={this.deleteRegistryProduct}
             className="registryProductCard"
           />
         ))
