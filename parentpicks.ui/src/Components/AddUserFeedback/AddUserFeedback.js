@@ -50,7 +50,7 @@ class AddUserFeedback extends React.Component {
         const { newUserFeedback } = this.state;
         return (
             <div className="newUserFeedback">
-            <h1 className="addUserFeedbackComponentTitle">Add New Activity</h1>
+            <h3 className="addUserFeedbackComponentTitle">Leave a Review</h3>
             <form className="new-activity-form" onSubmit={this.formSubmit}>
               <div className="form-group">
                 <label htmlFor="starRating">Star Rating:</label>

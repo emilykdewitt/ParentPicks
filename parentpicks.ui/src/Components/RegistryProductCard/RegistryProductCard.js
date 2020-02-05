@@ -1,14 +1,24 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Button } from 'reactstrap';
 
 import registryProductShape from '../../Helpers/registryProductShape';
+import userRegistryProductData from '../../DataRequests/userRegistryProductData';
 
 // import './ProductCard.scss';
 
 class RegistryProductCard extends React.Component {
   static propTypes = {
     registryProduct: registryProductShape.registryProductCardShape,
+    deleteRegistryProduct: PropTypes.func.isRequired,
   }
+
+  deleteMe = (e) => {
+    e.preventDefault();
+    const regProductToDeleteId = this.props.productId;
+    const deleteFromRegistry = this.props.deleteRegistryProduct;
+    deleteFromRegistry(regProductToDeleteId);
+  };
 
   render() {
     const product = {...this.props};
@@ -22,6 +32,7 @@ class RegistryProductCard extends React.Component {
             <h5 className="card-title">{product.brand}</h5>
             <p className="card-text">Rating:{product.starRating}</p>
             <p className="card-text">Quantity Needed:{product.quantityNeeded}</p>
+            <Button className="btn btn-primary" onClick={this.deleteMe}>Remove from Registry</Button>
             {/* <Link className="btn btn-info" to={addLink}>Add Activity</Link> */}
           </div>
         </div>

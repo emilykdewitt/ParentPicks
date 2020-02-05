@@ -11,6 +11,8 @@ const getUserRegistryProductsForUser= userId => new Promise((resolve, reject) =>
       });
   });
 
-// post new product to user registry
+const addProductToRegistry = registryProductObj => axios.post(`${databaseUrl}`, registryProductObj);
 
-export default { getUserRegistryProductsForUser };
+const deleteRegistryProduct = regProdId => axios.delete(`${databaseUrl}/${regProdId}`);
+
+export default { getUserRegistryProductsForUser, addProductToRegistry, deleteRegistryProduct };
