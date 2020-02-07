@@ -6,6 +6,7 @@ const defaultRegProduct = {
     userId: '',
     productId: '',
     quantityNeeded: '',
+    itemsInRegistry: []
 };
 
 class AddToRegistry extends React.Component {
@@ -23,13 +24,18 @@ class AddToRegistry extends React.Component {
 
     formSubmit = (e) => {
         e.preventDefault();
-        const saveMe = { ...this.state.newRegProduct };
-        saveMe.userId = sessionStorage.getItem('userId');
-        saveMe.productId = this.props.productId;
-        console.error(saveMe);
-        userRegistryProductData.addProductToRegistry(saveMe)
-            .then(() => console.error('Success!'))
-            .catch(err => console.error('unable to save', err));
+        const checkIfInReg = this.props.checkIfInRegistry;
+        if (checkIfInReg(this.props.productId)) {
+            console.error('Item not added to registry');
+        } else {
+            const saveMe = { ...this.state.newRegProduct };
+            saveMe.userId = sessionStorage.getItem('userId');
+            saveMe.productId = this.props.productId;
+            console.error(saveMe);
+            userRegistryProductData.addProductToRegistry(saveMe)
+                .then(() => console.error('Success!'))
+                .catch(err => console.error('unable to save', err));
+        }
     }
 
     render() {

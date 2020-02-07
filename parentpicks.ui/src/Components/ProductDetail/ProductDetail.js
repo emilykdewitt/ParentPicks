@@ -1,30 +1,35 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
+import { Col, Row, Container } from 'reactstrap';
 
 import productsData from '../../DataRequests/productsData';
 import userFeedbackData from '../../DataRequests/userFeedbackData';
-import { Col, Row, Container } from 'reactstrap';
+import userRegistryProductData from '../../DataRequests/userRegistryProductData';
+
 import SingleUserFeedback from '../SingleUserFeedback/SingleUserFeedback';
 import AddUserFeedback from '../AddUserFeedback/AddUserFeedback';
 import AddToRegistry from '../AddToRegistry/AddToRegistry';
 
-const defaultProduct = {
-    categoryId: '',
-    name: '',
-    brand: '',
-    description: '',
-    productImageUrl: '',
-};
+// const defaultProduct = {
+//     categoryId: '',
+//     name: '',
+//     brand: '',
+//     description: '',
+//     productImageUrl: '',
+// };
 
 class ProductDetail extends React.Component {
     state = {
         product: '',
         userFeedbacks: [],
-        currentUserId: ''
+        currentUserId: '',
+        myRegistryProducts: [],
     }
 
     componentDidMount() {
         const productId = this.props.match.params.id;
+        const userId = sessionStorage.getItem('userId');
+        this.setState({ currentUser: userId })
         productsData.getSingleProduct(productId)
             .then((productResult) => {
                 this.setState({ product: productResult })
@@ -35,8 +40,17 @@ class ProductDetail extends React.Component {
                 this.setState({ userFeedbacks: userFeedbackResults })
             })
             .catch((err) => console.error('no productReviews returned', err));
-        const userId = sessionStorage.getItem('userId');
-        this.setState({ currentUser: userId })
+        userRegistryProductData.getUserRegistryProductsForUser(userId)
+            .then(myRegistryProducts => this.setState({ myRegistryProducts }))
+            .catch(err => console.error('no registry products for you', err));
+    }
+
+    checkIfInRegistry = (productId) => {
+        const matchingItems = this.state.myRegistryProducts.filter(product => product.id == productId);
+        if (matchingItems.length > 0) {
+          alert('This item is already in your registry');
+          return true;
+        } else return false;
     }
 
     render() {
@@ -84,6 +98,7 @@ class ProductDetail extends React.Component {
                                 <AddToRegistry 
                                     userId={this.state.currentUserId}
                                     productId={product.id}
+                                    checkIfInRegistry={this.checkIfInRegistry}
                                 />
                             </Col>
                         </Row>

@@ -29,7 +29,6 @@ class MyRegistry extends React.Component {
         userRegistryProductData.getUserRegistryProductsForUser(userId)
             .then(myRegistryProducts => {
               this.setState({ myRegistryProducts, filteredRegistryProducts: myRegistryProducts })
-              console.error(myRegistryProducts);
             })
             .catch(err => console.error('no registry products for you', err));
     }
@@ -51,7 +50,7 @@ class MyRegistry extends React.Component {
             resultProducts.push(product);
           }
           this.setState({ filteredRegistryProducts: resultProducts });
-          this.makeProducts(this.state.filteredRegistryProducts);
+          this.makeRegistryProducts(this.state.filteredRegistryProducts);
         });
     }
 
@@ -70,7 +69,7 @@ class MyRegistry extends React.Component {
           <RegistryProductCard
             key={product.id}
             categoryId={product.categoryId}
-            productId={product.id}
+            // productId={product.id}
             name={product.name}
             brand={product.brand}
             description={product.description}

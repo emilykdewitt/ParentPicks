@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
 import registryProductShape from '../../Helpers/registryProductShape';
-import userRegistryProductData from '../../DataRequests/userRegistryProductData';
+// import userRegistryProductData from '../../DataRequests/userRegistryProductData';
 
 // import './ProductCard.scss';
 
