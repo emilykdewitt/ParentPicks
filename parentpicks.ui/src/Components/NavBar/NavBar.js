@@ -50,7 +50,7 @@ class MyNavbar extends React.Component {
             <NavLink tag={RRNavLink} to='/my-registry'>My Registry</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={RRNavLink} to='/my-picks'>My Picks</NavLink>
+            <NavLink tag={RRNavLink} to='/userFeedback'>My Picks</NavLink>
           </NavItem>
           <NavItem>
             <NavLink tag={RRNavLink} to='/users'>Community</NavLink>

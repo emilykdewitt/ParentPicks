@@ -30,7 +30,7 @@ class EditUserProfile extends React.Component {
     formSubmit = (e) => {
         e.preventDefault();
         const { newUser } = this.state;
-        const userId = sessionStorage.getItem('userId');
+        const userId = parseInt(sessionStorage.getItem('userId'));
         const userObj = {
             firstName: newUser.firstName,
             lastName: newUser.lastName,
@@ -39,8 +39,12 @@ class EditUserProfile extends React.Component {
             profilePhotoUrl: newUser.profilePhotoUrl,
         };
         usersData.editUserInfo(userId, userObj)
-        .then(res => console.error('Profile updated', res))
-        .catch(err => console.error('Sorry dawg', err));
+            .then(res => {
+                console.error('Profile updated', res);
+                this.props.history.push(`/users/${userId}`);
+            })
+            .catch(err => console.error('Sorry dawg', err));
+
     };
 
     handleChange = (e) => {

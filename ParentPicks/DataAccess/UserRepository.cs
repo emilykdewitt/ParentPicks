@@ -87,7 +87,7 @@ namespace ParentPicks.DataAccess
             }
         }
 
-        public bool UpdateUser(int userId, UpdateUserDTO userToUpdate)
+        public bool UpdateUser(int id, UpdateUserDTO userToUpdate)
         {
             using (var db = new SqlConnection(_connectionString))
             {
@@ -97,12 +97,10 @@ namespace ParentPicks.DataAccess
                             ,[Location] = @Location
                             ,[Bio] = @Bio
                             ,[ProfilePhotoUrl] = @ProfilePhotoUrl
-                            where [Id] = @userId";
+                            output inserted.*
+                            where [Id] = @id";
 
-                var parameters = new
-                {
-                    UserId = userId
-                };
+                userToUpdate.Id = id;
 
                 return db.Execute(sql, userToUpdate) == 1;
 

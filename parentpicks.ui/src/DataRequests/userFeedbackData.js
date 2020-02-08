@@ -21,6 +21,24 @@ const getProductFeedbackByProductId = productId => new Promise((resolve, reject)
     });
 });
 
+const getFeedbackByFeedbackId = feedbackId => new Promise((resolve, reject) => {
+  axios.get(`${databaseUrl}/${feedbackId}`)
+  .then((result) => {
+    resolve(result.data);
+  })
+  .catch(err => reject(err))
+})
+
 const addUserFeedback = userFeedbackObj => axios.post(`${databaseUrl}`, userFeedbackObj);
 
-export default { getUserFeedbacksForUser, getProductFeedbackByProductId, addUserFeedback };
+const editUserFeedback = (feedbackId, feedbackObj) => axios.put(`${databaseUrl}/update/${feedbackId}`, feedbackObj);
+
+const deleteUserFeedback = feedbackId => axios.delete(`${databaseUrl}/${feedbackId}`);
+
+export default { getUserFeedbacksForUser, 
+                  getProductFeedbackByProductId, 
+                  editUserFeedback, 
+                  getFeedbackByFeedbackId, 
+                  addUserFeedback,
+                  deleteUserFeedback
+                };

@@ -27,6 +27,13 @@ namespace ParentPicks.Controllers
             return _repo.GetAllUserFeedbacks();
         }
 
+        //GET single feedback by feedbackId
+        [HttpGet("{feedbackId}")]
+        public ProductWithUserFeedbackDTO GetSingleFeedbackByFeedbackId(int feedbackId)
+        {
+            return _repo.GetSingleFeedbackByFeedbackId(feedbackId);
+        }
+
         //GET all user feedback by user id
         [HttpGet("user/{userId}")]
         public IEnumerable<ProductWithUserFeedbackDTO> GetUserFeedbacksByUserId(int userId)

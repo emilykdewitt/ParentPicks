@@ -69,9 +69,7 @@ namespace ParentPicks.DataAccess
             using (var db = new SqlConnection(_connectionString))
             {
                 var sql = @"Update [UserRegistryProduct]
-                        SET [UserId] = @UserId
-                        ,[ProductId] = @ProductId
-                        ,[QuantityNeeded] = @QuantityNeeded
+                        SET [QuantityNeeded] = @QuantityNeeded
                         WHERE [Id] = @Id";
 
                 userRegistryProductToUpdate.Id = userRegistryProductId;

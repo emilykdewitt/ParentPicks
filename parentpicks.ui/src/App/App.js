@@ -21,9 +21,10 @@ import MyPicks from '../Components/MyPicks/MyPicks';
 import ProductDetail from '../Components/ProductDetail/ProductDetail';
 import UserProfile from '../Components/UserProfile/UserProfile';
 import CommunityPage from '../Components/CommunityPage/CommunityPage';
+import EditUserProfile from '../Components/EditUserProfile/EditUserProfile';
+import EditUserFeedback from '../Components/EditUserFeedback/EditUserFeedback';
 
 import './App.scss';
-import EditUserProfile from '../Components/EditUserProfile/EditUserProfile';
 
 firebaseConnection();
 
@@ -116,7 +117,8 @@ class App extends React.Component {
               <PrivateRoute exact path="/products" authed={authed} component={Products} />
               <PrivateRoute exact path='/products/:id' component={ProductDetail} authed={authed} />
               <PrivateRoute path="/my-registry" authed={authed} component={MyRegistry} />
-              <PrivateRoute path="/my-picks" authed={authed} component={MyPicks} />
+              <PrivateRoute exact path="/userFeedback" authed={authed} component={MyPicks} />
+              <PrivateRoute exact path='/userFeedback/update/:feedbackId' component={EditUserFeedback} authed={authed} />
               <PrivateRoute exact path="/users" authed={authed} component={CommunityPage} />
               <PrivateRoute exact path='/users/:id' component={UserProfile} authed={authed} />
               <PrivateRoute exact path='/users/edit/:id' component={EditUserProfile} authed={authed} />

@@ -73,6 +73,7 @@ class Login extends React.Component {
                   id="inputPassword"
                   placeholder="Password"
                   value={user.password}
+                  autoComplete="off"
                   onChange={this.passwordChange}
                 />
               </div>

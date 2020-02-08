@@ -25,9 +25,15 @@ class MyPicks extends React.Component {
 
     getMyPicks = () => {
         const userId = sessionStorage.getItem('userId');
-        userFeedbackData.getUserFeedbacksForUser(1003)
+        userFeedbackData.getUserFeedbacksForUser(userId)
             .then(myPicks => this.setState({ myPicks, filteredPicks: myPicks }))
             .catch(err => console.error('no feedback for you', err));
+    }
+
+    deleteFeedback = (userFeedbackId) => {
+      userFeedbackData.deleteUserFeedback(userFeedbackId)
+        .then(() => this.getMyPicks())
+        .catch(err => console.error('unable to delete'));
     }
 
     filterPicksBySearchInput = (e) => {
@@ -58,6 +64,7 @@ class MyPicks extends React.Component {
         return results.map(pick => (
             <MyPickCard
                 key={pick.id}
+                id={pick.id}
                 categoryId={pick.categoryId}
                 productImageUrl={pick.productImageUrl}
                 name={pick.name}
@@ -65,6 +72,7 @@ class MyPicks extends React.Component {
                 starRating={pick.starRating}
                 review={pick.review}
                 className="myPickCard"
+                deleteFeedback={this.deleteFeedback}
             />
         ))
     }
