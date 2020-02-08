@@ -15,4 +15,12 @@ const addProductToRegistry = registryProductObj => axios.post(`${databaseUrl}`, 
 
 const deleteRegistryProduct = regProdId => axios.delete(`${databaseUrl}/${regProdId}`);
 
-export default { getUserRegistryProductsForUser, addProductToRegistry, deleteRegistryProduct };
+const editRegistryProduct = (regProdId, regProdObj) => axios.put(`${databaseUrl}/update/${regProdId}`, regProdObj);
+
+
+export default {
+  getUserRegistryProductsForUser,
+  addProductToRegistry,
+  deleteRegistryProduct,
+  editRegistryProduct
+};

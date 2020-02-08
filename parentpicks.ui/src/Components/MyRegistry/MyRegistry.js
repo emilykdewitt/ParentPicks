@@ -33,6 +33,13 @@ class MyRegistry extends React.Component {
             .catch(err => console.error('no registry products for you', err));
     }
 
+    updateRegistryProduct = (userRegProdId, userRegProdObj) => {
+      console.error(userRegProdObj)
+      userRegistryProductData.editRegistryProduct(userRegProdId, userRegProdObj)
+        .then(() => this.getRegistryProducts())
+        .catch(err => console.error('unable to update'));
+    }
+
     deleteRegistryProduct = (userRegProdId) => {
       userRegistryProductData.deleteRegistryProduct(userRegProdId)
         .then(() => this.getRegistryProducts())
@@ -69,7 +76,7 @@ class MyRegistry extends React.Component {
         return results.map(product => (
           <RegistryProductCard
             key={product.id}
-            regProdId={product.id}
+            regProdId={product.regProdId}
             categoryId={product.categoryId}
             name={product.name}
             brand={product.brand}
@@ -78,6 +85,7 @@ class MyRegistry extends React.Component {
             quantityNeeded={product.quantityNeeded}
             starRating={product.starRating}
             deleteRegistryProduct={this.deleteRegistryProduct}
+            updateRegistryProduct={this.updateRegistryProduct}
             className="registryProductCard"
           />
         ))

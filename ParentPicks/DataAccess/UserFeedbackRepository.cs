@@ -42,6 +42,22 @@ namespace ParentPicks.DataAccess
             }
         }
 
+        public ProductWithUserFeedbackDTO GetSingleFeedbackByFeedbackId(int id)
+        {
+            using (var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"Select *
+                            from UserFeedback
+                            where Id = @id";
+                var parameters = new
+                {
+                    Id = id
+                };
+                var singleFeedback = db.QueryFirstOrDefault<ProductWithUserFeedbackDTO>(sql, parameters);
+                return singleFeedback;
+            }
+        }
+
         public IEnumerable<ProductWithUserFeedbackDTO> GetUserFeedbacksByUserId(int userId)
         {
             using (var db = new SqlConnection(_connectionString))
@@ -88,9 +104,7 @@ namespace ParentPicks.DataAccess
             using (var db = new SqlConnection(_connectionString))
             {
                 var sql = @"Update [UserFeedback]
-                          SET [UserId] = @UserId
-                          ,[ProductId] = @ProductId
-                          ,[StarRating] = @StarRating
+                          SET [StarRating] = @StarRating
                           ,[Review] = @Review
                           WHERE [Id] = @Id";
 

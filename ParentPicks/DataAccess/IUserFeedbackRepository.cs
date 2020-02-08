@@ -15,5 +15,6 @@ namespace ParentPicks.DataAccess
         bool AddNewUserFeedback(AddUserFeedbackDTO userFeedbackToAdd);
         bool UpdateUserFeedback(int userFeedbackId, UpdateUserFeedbackDTO userPersonalToUpdate);
         bool DeleteUserFeedback(int userFeedbackId);
+        ProductWithUserFeedbackDTO GetSingleFeedbackByFeedbackId(int feedbackId);
     }
 }
