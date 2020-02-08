@@ -46,7 +46,10 @@ class ProductDetail extends React.Component {
     }
 
     checkIfInRegistry = (productId) => {
+        console.error('productId:', productId);
+        console.error('everything in my registry:', this.state.myRegistryProducts);
         const matchingItems = this.state.myRegistryProducts.filter(product => product.id == productId);
+        console.error('matching items:', matchingItems);
         if (matchingItems.length > 0) {
           alert('This item is already in your registry');
           return true;

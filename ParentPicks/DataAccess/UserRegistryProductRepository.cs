@@ -30,7 +30,7 @@ namespace ParentPicks.DataAccess
         {
             using (var db = new SqlConnection(_connectionString))
             {
-                var sql = @"SELECT P.*, URP.QuantityNeeded,
+                var sql = @"SELECT P.*, URP.QuantityNeeded, URP.Id as RegProdId,
                             (select avg(UF.StarRating) from UserFeedback UF where UF.ProductId = P.Id) StarRating
                             from UserRegistryProduct URP
                             join Product P

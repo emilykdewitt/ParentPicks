@@ -58,6 +58,7 @@ class MyRegistry extends React.Component {
         e.preventDefault();
         const buttonCategory = e.target.id;
         const { myRegistryProducts } = this.state;
+        console.error(myRegistryProducts);
         this.setState({ filteredRegistryProducts: myRegistryProducts});
         const filteredResults = this.state.myRegistryProducts.filter(product => product.categoryId == buttonCategory);
         this.setState({ filteredRegistryProducts: filteredResults });
@@ -68,8 +69,8 @@ class MyRegistry extends React.Component {
         return results.map(product => (
           <RegistryProductCard
             key={product.id}
+            regProdId={product.id}
             categoryId={product.categoryId}
-            // productId={product.id}
             name={product.name}
             brand={product.brand}
             description={product.description}

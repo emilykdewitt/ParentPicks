@@ -19,8 +19,11 @@ import Products from '../Components/Products/Products';
 import MyRegistry from '../Components/MyRegistry/MyRegistry';
 import MyPicks from '../Components/MyPicks/MyPicks';
 import ProductDetail from '../Components/ProductDetail/ProductDetail';
+import UserProfile from '../Components/UserProfile/UserProfile';
+import CommunityPage from '../Components/CommunityPage/CommunityPage';
 
 import './App.scss';
+import EditUserProfile from '../Components/EditUserProfile/EditUserProfile';
 
 firebaseConnection();
 
@@ -114,7 +117,9 @@ class App extends React.Component {
               <PrivateRoute exact path='/products/:id' component={ProductDetail} authed={authed} />
               <PrivateRoute path="/my-registry" authed={authed} component={MyRegistry} />
               <PrivateRoute path="/my-picks" authed={authed} component={MyPicks} />
-              {/* <PrivateRoute path="/community" authed={authed} component={Community} /> */}
+              <PrivateRoute exact path="/users" authed={authed} component={CommunityPage} />
+              <PrivateRoute exact path='/users/:id' component={UserProfile} authed={authed} />
+              <PrivateRoute exact path='/users/edit/:id' component={EditUserProfile} authed={authed} />
               <Redirect from="*" to="/landing-page" />
             </Switch>
           </React.Fragment>

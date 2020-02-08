@@ -46,7 +46,7 @@ namespace ParentPicks.DataAccess
         {
             using (var db = new SqlConnection(_connectionString))
             {
-                var sql = @"SELECT UF.*, P.Id, P.CategoryId, P.[Name], P.Brand, P.ProductImageUrl
+                var sql = @"SELECT UF.*, P.Id as ProductId, P.CategoryId, P.[Name], P.Brand, P.ProductImageUrl
                             FROM UserFeedback UF
                             join Product P
                             on UF.ProductId = P.Id
