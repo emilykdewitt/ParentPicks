@@ -15,14 +15,12 @@ class Login extends React.Component {
 
   loginClickEvent = (e) => {
     const { user } = this.state;
-    console.error('login email', user.email);
     e.preventDefault();
     authRequests
       .loginUser(user)
       .then(usersData.getUserByFirebaseKey)
       .then((user) => {
         sessionStorage.setItem('userId', user.id);
-        console.error(user.id);
         this.props.history.push('/home');
       })
       .catch(error => {

@@ -71,7 +71,8 @@ namespace ParentPicks.DataAccess
                                 ,[Location]
                                 ,[Email]
                                 ,[Password]
-                                ,[Bio])
+                                ,[Bio]
+                                ,[ProfilePhotoUrl])
                              VALUES
                                 (@DateCreated
                                 , @FirebaseKey
@@ -80,7 +81,8 @@ namespace ParentPicks.DataAccess
                                 , @Location
                                 , @Email
                                 , @Password
-                                , @Bio)";
+                                , @Bio
+                                , @ProfilePhotoUrl)";
                 return db.Execute(sql, userToAdd) == 1;
             }
         }
@@ -90,15 +92,17 @@ namespace ParentPicks.DataAccess
             using (var db = new SqlConnection(_connectionString))
             {
                 var sql = @"Update [User]
-                            SET [DateCreated] = @DateCreated
-                            ,[FirebaseKey] = @FirebaseKey
-                            ,[FirstName] = @FirstName
+                            SET [FirstName] = @FirstName
                             ,[LastName] = @LastName
                             ,[Location] = @Location
-                            ,[Email] = @Email
-                            ,[Password] = @Password
-                            ,[Bio] = @Bio)";
-                userToUpdate.Id = userId;
+                            ,[Bio] = @Bio
+                            ,[ProfilePhotoUrl] = @ProfilePhotoUrl
+                            where [Id] = @userId";
+
+                var parameters = new
+                {
+                    UserId = userId
+                };
 
                 return db.Execute(sql, userToUpdate) == 1;
 

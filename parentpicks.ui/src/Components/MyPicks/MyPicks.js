@@ -14,7 +14,6 @@ class MyPicks extends React.Component {
 
     componentDidMount() {
         const userId = sessionStorage.getItem('userId');
-        console.error(userId);
         userFeedbackData.getUserFeedbacksForUser(userId)
             .then(myPicks => this.setState({ myPicks, filteredPicks: myPicks }))
             .catch(err => console.error('no feedback for you', err));

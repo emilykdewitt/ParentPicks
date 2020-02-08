@@ -16,6 +16,7 @@ const defaultUser = {
   lastName: '',
   location: '',
   bio: '',
+  profilePhotoUrl: '',
 };
 
 class Register extends React.Component {
@@ -35,6 +36,7 @@ class Register extends React.Component {
       lastName: newUser.lastName,
       location: newUser.location,
       bio: newUser.bio,
+      profilePhotoUrl: newUser.profilePhotoUrl,
     };
     authRequests
       .registerUser(userObj)
@@ -46,12 +48,6 @@ class Register extends React.Component {
         console.error('there was an error with registration', error);
       });
   };
-
-  // formFieldStringState = (e) => {
-  //   const tempUser = { ...this.state.newUser };
-  //   tempUser[e.target.id] = e.target.value;
-  //   this.setState({ newUser: tempUser });
-  // }
 
   handleChange = (e) => {
     const tempUser = { ...this.state.newUser };
@@ -90,7 +86,7 @@ class Register extends React.Component {
             />
           </div>
           <div className="form-group col-11 col-md-9 col-lg-7">
-            <label htmlFor="name" className="newUserFormLabel">First Name</label>
+            <label htmlFor="firstName" className="newUserFormLabel">First Name</label>
             <input
             type="text"
             className="form-control"
@@ -102,7 +98,7 @@ class Register extends React.Component {
             />
           </div>
           <div className="form-group col-11 col-md-9 col-lg-7">
-            <label htmlFor="name" className="newUserFormLabel">Last Name</label>
+            <label htmlFor="lastName" className="newUserFormLabel">Last Name</label>
             <input
             type="text"
             className="form-control"
@@ -114,7 +110,7 @@ class Register extends React.Component {
             />
           </div>
           <div className="form-group col-11 col-md-9 col-lg-7">
-            <label htmlFor="name" className="newUserFormLabel">Location</label>
+            <label htmlFor="location" className="newUserFormLabel">Location</label>
             <input
             type="text"
             className="form-control"
@@ -126,7 +122,7 @@ class Register extends React.Component {
             />
           </div>
           <div className="form-group col-11 col-md-9 col-lg-7">
-            <label htmlFor="name" className="newUserFormLabel">Bio</label>
+            <label htmlFor="bio" className="newUserFormLabel">Bio</label>
             <input
             type="text"
             className="form-control"
@@ -134,6 +130,18 @@ class Register extends React.Component {
             value={newUser.bio}
             onChange={this.handleChange}
             placeholder="Expecting first child in June 2020!"
+            required
+            />
+          </div>
+          <div className="form-group col-11 col-md-9 col-lg-7">
+            <label htmlFor="profilePhotoUrl" className="newUserFormLabel">Profile Photo URL</label>
+            <input
+            type="text"
+            className="form-control"
+            id="profilePhotoUrl"
+            value={newUser.profilePhotoUrl}
+            onChange={this.handleChange}
+            placeholder="https://google.com/pictureofme.jpg"
             required
             />
           </div>

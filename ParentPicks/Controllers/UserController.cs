@@ -35,7 +35,7 @@ namespace ParentPicks.Controllers
         {
             var users = _repo.GetAllUsers();
 
-            return Ok(users.Select(u => new { u.FirstName, u.LastName, u.Location, u.Email, u.Bio }));
+            return Ok(users.Select(u => new { u.Id, u.FirstName, u.LastName, u.Location, u.Email, u.Bio, u.ProfilePhotoUrl }));
         }
 
         // GET: api/users/3

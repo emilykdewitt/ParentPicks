@@ -31,7 +31,6 @@ class AddToRegistry extends React.Component {
             const saveMe = { ...this.state.newRegProduct };
             saveMe.userId = sessionStorage.getItem('userId');
             saveMe.productId = this.props.productId;
-            console.error(saveMe);
             userRegistryProductData.addProductToRegistry(saveMe)
                 .then(() => console.error('Success!'))
                 .catch(err => console.error('unable to save', err));

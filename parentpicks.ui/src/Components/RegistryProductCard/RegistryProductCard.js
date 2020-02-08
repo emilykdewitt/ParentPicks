@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
 import registryProductShape from '../../Helpers/registryProductShape';
-// import userRegistryProductData from '../../DataRequests/userRegistryProductData';
+import userRegistryProductData from '../../DataRequests/userRegistryProductData';
 
 // import './ProductCard.scss';
 
@@ -14,10 +14,9 @@ class RegistryProductCard extends React.Component {
   }
 
   deleteMe = (e) => {
-    e.preventDefault();
-    const regProductToDeleteId = this.props.productId;
-    const deleteFromRegistry = this.props.deleteRegistryProduct;
-    deleteFromRegistry(regProductToDeleteId);
+    e.preventDefault();    
+    const regProdToDeleteId = this.props.regProdId;
+    this.props.deleteRegistryProduct(regProdToDeleteId);
   };
 
   render() {
