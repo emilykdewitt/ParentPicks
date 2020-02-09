@@ -17,7 +17,7 @@ import Login from '../Components/Login/Login';
 import Register from '../Components/Register/Register';
 import Products from '../Components/Products/Products';
 import UserRegistry from '../Components/UserRegistry/UserRegistry';
-import MyPicks from '../Components/MyPicks/MyPicks';
+import UserPicks from '../Components/UserPicks/UserPicks';
 import ProductDetail from '../Components/ProductDetail/ProductDetail';
 import UserProfile from '../Components/UserProfile/UserProfile';
 import CommunityPage from '../Components/CommunityPage/CommunityPage';
@@ -116,8 +116,8 @@ class App extends React.Component {
               <PrivateRoute path="/home" authed={authed} component={Home} />
               <PrivateRoute exact path="/products" authed={authed} component={Products} />
               <PrivateRoute exact path='/products/:id' component={ProductDetail} authed={authed} />
-              <PrivateRoute path="/userRegistry/:id" authed={authed} component={UserRegistry} />
-              <PrivateRoute exact path="/userFeedback" authed={authed} component={MyPicks} />
+              <PrivateRoute exact path="/userRegistryProduct/:id" authed={authed} component={UserRegistry} />
+              <PrivateRoute exact path="/userFeedback/:id" authed={authed} component={UserPicks} />
               <PrivateRoute exact path='/userFeedback/update/:feedbackId' component={EditUserFeedback} authed={authed} />
               <PrivateRoute exact path="/users" authed={authed} component={CommunityPage} />
               <PrivateRoute exact path='/users/:id' component={UserProfile} authed={authed} />

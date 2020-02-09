@@ -3,30 +3,48 @@ import { Container, Row, Col, ButtonGroup, Button, Input } from 'reactstrap';
 
 import userRegistryProductData from '../../DataRequests/userRegistryProductData';
 import categoriesData from '../../DataRequests/categoriesData';
+import usersData from '../../DataRequests/usersData';
 
 import RegistryProductCard from '../RegistryProductCard/RegistryProductCard';
+
+const defaultUser = {
+  id: '',
+  dateCreated: '',
+  firebaseKey: '',
+  firstName: '',
+  lastName: '',
+  location: '',
+  email: '',
+  bio: '',
+}
 
 class UserRegistry extends React.Component {
   state = {
     userRegistryProducts: [],
     filteredRegistryProducts: [],
-    categories: []
+    categories: [],
+    userId: '',
+    user: defaultUser,
   }
 
   componentDidMount() {
-    const userId = sessionStorage.getItem('userId');
-    userRegistryProductData.getUserRegistryProductsForUser(userId)
+    const id = this.props.match.params.id;
+    this.setState({ userId: id })
+    userRegistryProductData.getUserRegistryProductsForUser(id)
       .then(userRegistryProducts => this.setState({ userRegistryProducts, filteredRegistryProducts: userRegistryProducts }))
       .catch(err => console.error('no registry products for you', err));
     categoriesData.getAllCategories().then(data => {
       let allCategories = [...data];
       this.setState({ categories: allCategories });
     });
+    usersData.getUserById(id)
+      .then(userResult => this.setState({ user: userResult }))
+      .catch(err => console.error('could not get user', err));
   }
 
   getRegistryProducts = () => {
-    const userId = this.props.match.params.userId;
-    userRegistryProductData.getUserRegistryProductsForUser(userId)
+    const id = this.props.match.params.id;
+    userRegistryProductData.getUserRegistryProductsForUser(id)
       .then(userRegistryProducts => {
         this.setState({ userRegistryProducts, filteredRegistryProducts: userRegistryProducts })
       })
@@ -34,7 +52,6 @@ class UserRegistry extends React.Component {
   }
 
   updateRegistryProduct = (userRegProdId, userRegProdObj) => {
-    console.error(userRegProdObj)
     userRegistryProductData.editRegistryProduct(userRegProdId, userRegProdObj)
       .then(() => this.getRegistryProducts())
       .catch(err => console.error('unable to update'));
@@ -65,7 +82,6 @@ class UserRegistry extends React.Component {
     e.preventDefault();
     const buttonCategory = e.target.id;
     const { userRegistryProducts } = this.state;
-    console.error(userRegistryProducts);
     this.setState({ filteredRegistryProducts: userRegistryProducts });
     const filteredResults = this.state.userRegistryProducts.filter(product => product.categoryId == buttonCategory);
     this.setState({ filteredRegistryProducts: filteredResults });
@@ -76,6 +92,7 @@ class UserRegistry extends React.Component {
       return results.map(product => (
         <RegistryProductCard
           key={product.id}
+          userId={this.state.userId}
           regProdId={product.regProdId}
           categoryId={product.categoryId}
           name={product.name}
@@ -126,7 +143,7 @@ class UserRegistry extends React.Component {
             </Row>
           </Col>
           <Col xs="12" sm="12" m="9" lg="9">
-            <h1>My Registry</h1>
+            <h1>{this.state.user.firstName}'s Registry</h1>
             <Row>
               {makeRegistryItemCards}
             </Row>

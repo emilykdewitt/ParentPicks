@@ -35,11 +35,22 @@ class UserProfile extends React.Component {
     makeButtonOrNot = () => {
         const userId = this.state.user.id;
         const currentUserId = parseInt(sessionStorage.getItem('userId'));
-        const linkToEditUser = `/users/edit/${currentUserId}`
+        const linkToEditUser = `/users/edit/${currentUserId}`;
+        const linkToUserRegistry=`/userRegistryProduct/${userId}`;
+        const linkToUserPicks=`/userFeedback/${userId}`;
         if (userId === currentUserId) {
             return (
                 <div>
                     <Link to={linkToEditUser}>Click here to Edit Your Profile</Link>
+                    <Link className="btn btn-primary" to={linkToUserRegistry}>Go To Your Registry</Link>
+                    <Link className="btn btn-info" to={linkToUserPicks}>Go To Your Picks</Link>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <Link className="btn btn-primary" to={linkToUserRegistry}>View {this.state.user.firstName}'s Registry</Link>
+                    <Link className="btn btn-info" to={linkToUserPicks}>View {this.state.user.firstName}'s Picks</Link>
                 </div>
             )
         }

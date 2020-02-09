@@ -3,19 +3,21 @@ import { Container, Row, Col, ButtonGroup, Button, Input } from 'reactstrap';
 
 import userFeedbackData from '../../DataRequests/userFeedbackData';
 import categoriesData from '../../DataRequests/categoriesData';
-import MyPickCard from '../MyPickCard/MyPickCard';
+import UserPickCard from '../UserPickCard/UserPickCard';
 
-class MyPicks extends React.Component {
+class UserPicks extends React.Component {
     state = {
-        myPicks: [],
+        userPicks: [],
         filteredPicks: [],
-        categories: []
+        categories: [],
+        userId: ''
     }
 
     componentDidMount() {
-        const userId = sessionStorage.getItem('userId');
-        userFeedbackData.getUserFeedbacksForUser(userId)
-            .then(myPicks => this.setState({ myPicks, filteredPicks: myPicks }))
+        const sessionUserId = sessionStorage.getItem('userId');
+        this.setState({ userId: sessionUserId })
+        userFeedbackData.getUserFeedbacksForUser(sessionUserId)
+            .then(userPicks => this.setState({ userPicks, filteredPicks: userPicks }))
             .catch(err => console.error('no feedback for you', err));
         categoriesData.getAllCategories().then(data => {
             let allCategories = [...data];
@@ -23,25 +25,25 @@ class MyPicks extends React.Component {
         });
     }
 
-    getMyPicks = () => {
+    getUserPicks = () => {
         const userId = sessionStorage.getItem('userId');
         userFeedbackData.getUserFeedbacksForUser(userId)
-            .then(myPicks => this.setState({ myPicks, filteredPicks: myPicks }))
+            .then(userPicks => this.setState({ userPicks, filteredPicks: userPicks }))
             .catch(err => console.error('no feedback for you', err));
     }
 
     deleteFeedback = (userFeedbackId) => {
       userFeedbackData.deleteUserFeedback(userFeedbackId)
-        .then(() => this.getMyPicks())
+        .then(() => this.getUserPicks())
         .catch(err => console.error('unable to delete'));
     }
 
     filterPicksBySearchInput = (e) => {
         e.preventDefault();
         let resultPicks = [];
-        const myPicks = this.state.myPicks;
+        const userPicks = this.state.userPicks;
         const searchTerm = e.target.value.toLowerCase();
-        myPicks.forEach(pick => {
+        userPicks.forEach(pick => {
           const desc = pick.name.toLowerCase();
           if (desc.includes(searchTerm) && searchTerm !== "") {
             resultPicks.push(pick);
@@ -54,24 +56,25 @@ class MyPicks extends React.Component {
     filterPicksByCategory = (e) => {
         e.preventDefault();
         const buttonCategory = e.target.id;
-        const { myPicks } = this.state;
-        this.setState({ filteredPicks: myPicks });
-        const filteredResults = this.state.myPicks.filter(pick => pick.categoryId == buttonCategory);
+        const { userPicks } = this.state;
+        this.setState({ filteredPicks: userPicks });
+        const filteredResults = this.state.userPicks.filter(pick => pick.categoryId == buttonCategory);
         this.setState({ filteredPicks: filteredResults });
     }
 
     makePicks = (results) => {
         return results.map(pick => (
-            <MyPickCard
+            <UserPickCard
                 key={pick.id}
                 id={pick.id}
+                userId={this.state.userId}
                 categoryId={pick.categoryId}
                 productImageUrl={pick.productImageUrl}
                 name={pick.name}
                 brand={pick.brand}
                 starRating={pick.starRating}
                 review={pick.review}
-                className="myPickCard"
+                className="userPickCard"
                 deleteFeedback={this.deleteFeedback}
             />
         ))
@@ -79,7 +82,7 @@ class MyPicks extends React.Component {
 
     render() {
         const makePickCards = (this.state.filteredPicks.length > 0 ? this.makePicks(this.state.filteredPicks) : 
-            this.makePicks(this.state.myPicks));
+            this.makePicks(this.state.userPicks));
 
         const makeCategories = this.state.categories.map(category => (
             <Button
@@ -105,7 +108,7 @@ class MyPicks extends React.Component {
                   <Row>
                     <ButtonGroup vertical id="categoryBtnContainer">
                       {makeCategories}
-                      <Button id="showAllBtn" onClick={this.getMyPicks}>Show All</Button>
+                      <Button id="showAllBtn" onClick={this.getUserPicks}>Show All</Button>
                     </ButtonGroup>
                   </Row>
                 </Col>
@@ -122,4 +125,4 @@ class MyPicks extends React.Component {
     }
 }
 
-export default MyPicks;
+export default UserPicks;
