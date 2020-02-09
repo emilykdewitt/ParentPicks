@@ -14,7 +14,7 @@ class RegistryProductCard extends React.Component {
   }
 
   deleteMe = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     const regProdToDeleteId = this.props.regProdId;
     this.props.deleteRegistryProduct(regProdToDeleteId);
   };
@@ -22,20 +22,45 @@ class RegistryProductCard extends React.Component {
   updateMe = (e) => {
     e.preventDefault();
     const regProdToUpdateId = this.props.regProdId;
-    // get the value we want to insert and provide updated object
-    const updatedRegProdObj = {...this.props};
+    const updatedRegProdObj = { ...this.props };
     updatedRegProdObj.quantityNeeded = this.state.quantityNeeded;
     this.props.updateRegistryProduct(regProdToUpdateId, updatedRegProdObj)
   }
 
-  state = {quantityNeeded : 0}
+  state = { quantityNeeded: 0 }
 
   componentDidMount() {
-    this.setState({ quantityNeeded:this.props.quantityNeeded });
+    this.setState({ quantityNeeded: this.props.quantityNeeded });
+  }
+
+  makeInputOrNot = () => {
+    const userIdOfPage = parseInt(this.props.userId);
+    const loggedInUserId = parseInt(sessionStorage.getItem('userId'));
+    const product = this.props;
+    if (userIdOfPage === loggedInUserId) {
+      return (
+        <div>
+          <label htmlFor="quantityNeeded">Quantity Needed</label>
+          <input
+            type="number"
+            className="form-control"
+            id="quantityNeeded"
+            placeholder={this.state.quantityNeeded}
+            value={this.state.quantityNeeded}
+            onBlur={this.updateMe}
+            onChange={(e) => this.setState({ quantityNeeded: e.target.value })}
+          />
+          <Button className="btn btn-primary" onClick={this.deleteMe}>Remove from Registry</Button>
+        </div>
+      )} else {
+        return (
+          <p className="card-text">Quantity Needed: {product.quantityNeeded}</p>
+        )
+      }
   }
 
   render() {
-    const product = {...this.props};
+    const product = { ...this.props };
     return (
       <div className="productCard col-lg-4 col-md-6 col-sm-12">
         <div className="card">
@@ -44,21 +69,10 @@ class RegistryProductCard extends React.Component {
             <h5 className="card-title">{product.name}</h5>
             <h5 className="card-title">{product.brand}</h5>
             <p className="card-text">Rating: {product.starRating}</p>
-            {/* <p className="card-text">Quantity Needed: {product.quantityNeeded}</p> */}
-            <label htmlFor="quantityNeeded">Quantity Needed</label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        id="quantityNeeded"
-                        placeholder={this.state.quantityNeeded}
-                        value={this.state.quantityNeeded}
-                        onBlur={this.updateMe}
-                        onChange={(e) => this.setState({ quantityNeeded : e.target.value })}
-                    />
-              </div>
-            <Button className="btn btn-primary" onClick={this.deleteMe}>Remove from Registry</Button>
           </div>
+          {this.makeInputOrNot()}
         </div>
+      </div>
     );
   }
 }

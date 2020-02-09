@@ -31,9 +31,8 @@ class EditUserFeedback extends React.Component {
             review: newReview.review
         };
         userFeedbackData.editUserFeedback(reviewId, reviewObj)
-            .then(res => {
+            .then(() => {
                 const userId = sessionStorage.getItem('userId');
-                // console.error('Review updated', res);
                 this.props.history.push(`/userFeedback/user/${userId}`)
             })
             .catch(err => console.error('Review not updated', err));

@@ -40,7 +40,6 @@ class AddUserFeedback extends React.Component {
         const saveMe = { ...this.state.newUserFeedback };
         saveMe.userId = sessionStorage.getItem('userId');
         saveMe.productId = this.props.productId;
-        console.error(saveMe);
         userFeedbackData.addUserFeedback(saveMe)
             .then(() => console.error('Success!'))
             .catch(err => console.error('unable to save', err));

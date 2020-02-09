@@ -37,6 +37,9 @@ class MyNavbar extends React.Component {
   render() {
     const { authed } = this.props;
     const buildNavbar = () => {
+      const userId = sessionStorage.getItem('userId');
+      const myRegistryLink = `/userRegistryProduct/${userId}`
+      const myPicksLink = `/userFeedback/${userId}`
       if (authed) {
         return (
           <Nav className="ml-auto" navbar>
@@ -47,10 +50,10 @@ class MyNavbar extends React.Component {
             <NavLink tag={RRNavLink} to='/products'>Products</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={RRNavLink} to='/my-registry'>My Registry</NavLink>
+            <NavLink tag={RRNavLink} to={myRegistryLink}>My Registry</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={RRNavLink} to='/userFeedback'>My Picks</NavLink>
+            <NavLink tag={RRNavLink} to={myPicksLink}>My Picks</NavLink>
           </NavItem>
           <NavItem>
             <NavLink tag={RRNavLink} to='/users'>Community</NavLink>
