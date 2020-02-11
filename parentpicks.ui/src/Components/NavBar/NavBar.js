@@ -40,11 +40,12 @@ class MyNavbar extends React.Component {
       const userId = sessionStorage.getItem('userId');
       const myRegistryLink = `/userRegistryProduct/${userId}`
       const myPicksLink = `/userFeedback/${userId}`
+      const myProfileLink = `/users/${userId}`
       if (authed) {
         return (
           <Nav className="ml-auto" navbar>
           <NavItem>
-            <NavLink tag={RRNavLink} to='/home'>Home</NavLink>
+            <NavLink tag={RRNavLink} to={myProfileLink}>Home</NavLink>
           </NavItem>
           <NavItem>
             <NavLink tag={RRNavLink} to='/products'>Products</NavLink>

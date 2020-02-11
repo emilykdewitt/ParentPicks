@@ -1,10 +1,3 @@
-// get userId
-// get productId
-// take information from input fields (star rating and review)
-// add to userFeedback list
-// pop up a 'your feedback has been saved!' alert
-// auto-populate with user's existing review? Seems difficult.
-
 import React from 'react';
 // import { render } from 'node-sass';
 import userFeedbackData from '../../DataRequests/userFeedbackData';

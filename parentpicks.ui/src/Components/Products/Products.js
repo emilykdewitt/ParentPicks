@@ -12,7 +12,7 @@ class Products extends React.Component {
     state = {
         products: [],
         filteredProducts: [],
-        categories: [],
+        categories: []
     }
 
     componentDidMount() {

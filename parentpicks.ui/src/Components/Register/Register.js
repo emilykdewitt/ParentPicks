@@ -42,7 +42,7 @@ class Register extends React.Component {
       .registerUser(userObj)
       .then((user) => {
         sessionStorage.setItem('userId',user.id);
-        this.props.history.push('/home');
+        this.props.history.push(`/users/${user.id}`);
       })
       .catch(error => {
         console.error('there was an error with registration', error);
