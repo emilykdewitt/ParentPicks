@@ -1,4 +1,9 @@
-.productCard {
+.starContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.registryProductCard {
     border-radius: 10px;
     transition: 0.3s;
     height: 320px;
@@ -7,40 +12,40 @@
     background-color: white;
 }
 
-.productCardImage {
+.pickCardImage {
     max-height: 125px;
     margin: 0px;
 }
 
-#productCardBody {
+.pickCardBody {
     padding: 5px
 }
 
-.product-name {
+.pick-card-name {
     font-size: 1.2em;
     margin-bottom: 2px;
 }
 
-.product-brand {
+.pick-card-brand {
     font-size: 1em;
     margin-bottom: 2px;
 }
 
-.star-container {
+.pick-star-container {
     display: flex;
     justify-content: center;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.product-description {
+.review-description {
     font-size: 0.75em;
     margin-bottom: 2px;
     text-align: left;
     margin-top: 5px;
 }
 
-.productDetailBtn {
+.pick-card-button {
     padding-right: 6px;
     padding-left: 6px;
     padding-bottom: 3px;

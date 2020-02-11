@@ -9,7 +9,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConnection from '../DataRequests/firebaseConnection';
 
-import Home from '../Components/Home/Home';
 // import Auth from '../Components/Auth/Auth';
 import NavBar from '../Components/NavBar/NavBar';
 import LandingPage from '../Components/LandingPage/LandingPage';
@@ -29,9 +28,10 @@ import './App.scss';
 firebaseConnection();
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
+  const userId = sessionStorage.getItem('userId')
   const routeChecker = props => (authed === false
     ? (<Component authed={authed} {...props} {...rest} />)
-    : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
+    : (<Redirect to={{ pathname: `users/${userId}`, state: { from: props.location } }} />));
   return <Route {...rest} render={props => routeChecker(props)} />;
 };
 const PrivateRoute = ({ component: Component, authed, ...rest }) => {
@@ -113,7 +113,6 @@ class App extends React.Component {
                 component={Register} 
                 getCurrentCustomer={this.getCurrentUser}
               />
-              <PrivateRoute path="/home" authed={authed} component={Home} />
               <PrivateRoute exact path="/products" authed={authed} component={Products} />
               <PrivateRoute exact path='/products/:id' component={ProductDetail} authed={authed} />
               <PrivateRoute exact path="/userRegistryProduct/:id" authed={authed} component={UserRegistry} />

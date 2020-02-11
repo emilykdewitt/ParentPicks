@@ -1,6 +1,10 @@
 import React from 'react';
 
 import userFeedbackData from '../../DataRequests/userFeedbackData';
+import productsData from '../../DataRequests/productsData';
+
+import './EditUserFeedback.scss';
+import BeautyStars from 'beauty-stars';
 
 const defaultReview = {
     starRating: '',
@@ -10,16 +14,24 @@ const defaultReview = {
 class EditUserFeedback extends React.Component {
     state = {
         newReview: defaultReview,
-        existingReview: defaultReview
+        existingReview: defaultReview,
+        productName: '',
     }
 
     componentDidMount() {
         const feedbackId = this.props.match.params.feedbackId;
         userFeedbackData.getFeedbackByFeedbackId(feedbackId)
             .then((reviewResult) => {
-                this.setState({ existingReview: reviewResult, newReview: {...reviewResult} })
+                this.setState({ existingReview: reviewResult, newReview: { ...reviewResult } })
+                productsData.getSingleProduct(reviewResult.productId)
+                    .then((product) => {
+                        const productResultName = product.name;
+                        this.setState({ productName: productResultName })
+                    })
+                    .catch(err => console.error('not able to get matching product name', err));
             })
             .catch((err) => console.error('no review returned', err));
+
     }
 
     formSubmit = (e) => {
@@ -33,10 +45,16 @@ class EditUserFeedback extends React.Component {
         userFeedbackData.editUserFeedback(reviewId, reviewObj)
             .then(() => {
                 const userId = sessionStorage.getItem('userId');
-                this.props.history.push(`/userFeedback/user/${userId}`)
+                this.props.history.push(`/userFeedback/${userId}`)
             })
             .catch(err => console.error('Review not updated', err));
     };
+
+    starChange = (e) => {
+        const tempReview = { ...this.state.newReview };
+        tempReview.starRating = e;
+        this.setState({ newReview: tempReview })
+    }
 
     handleChange = (e) => {
         const tempReview = { ...this.state.newReview };
@@ -49,19 +67,17 @@ class EditUserFeedback extends React.Component {
         const existingReview = this.state.existingReview;
         return (
             <div>
-                <h2>Update Product Review</h2>
+                <h3>Update Review for {this.state.productName}</h3>
                 <form className="row justify-content-center new-user-form" onSubmit={this.formSubmit}>
                     <div className="form-group col-11 col-md-9 col-lg-7">
                         <label htmlFor="starRating" className="newUserFormLabel">Star Rating</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="starRating"
-                            value={newReview.starRating}
-                            onChange={this.handleChange}
-                            placeholder={existingReview.starRating}
-                            required
-                        />
+                        <div className="star-container">
+                            <BeautyStars
+                                id="starRating"
+                                value={newReview.starRating}
+                                onChange={this.starChange}
+                            />
+                        </div>
                     </div>
                     <div className="form-group col-11 col-md-9 col-lg-7">
                         <label htmlFor="review" className="newUserFormLabel">Review</label>

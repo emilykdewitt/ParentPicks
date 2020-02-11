@@ -4,7 +4,8 @@ import { Button } from 'reactstrap';
 
 import registryProductShape from '../../Helpers/registryProductShape';
 
-// import './ProductCard.scss';
+import './RegistryProductCard.scss';
+import BeautyStars from 'beauty-stars';
 
 class RegistryProductCard extends React.Component {
   static propTypes = {
@@ -50,28 +51,32 @@ class RegistryProductCard extends React.Component {
             onBlur={this.updateMe}
             onChange={(e) => this.setState({ quantityNeeded: e.target.value })}
           />
-          <Button className="btn btn-primary" onClick={this.deleteMe}>Remove from Registry</Button>
+          <Button className="btn btn-primary remove-from-registry-btn" onClick={this.deleteMe}>Remove from Registry</Button>
         </div>
-      )} else {
-        return (
-          <p className="card-text">Quantity Needed: {product.quantityNeeded}</p>
-        )
-      }
+      )
+    } else {
+      return (
+        <p className="card-text">Quantity Needed: {product.quantityNeeded}</p>
+      )
+    }
   }
 
   render() {
     const product = { ...this.props };
     return (
-      <div className="productCard col-lg-4 col-md-6 col-sm-12">
-        <div className="card">
-          <div className="card-body" id="activity-card-body">
-            <img className="card-img-top img-fluid" src={product.productImageUrl} alt="tralalala" />
-            <h5 className="card-title">{product.name}</h5>
-            <h5 className="card-title">{product.brand}</h5>
-            <p className="card-text">Rating: {product.starRating}</p>
+      <div className="registryProductCard card col-lg-3 col-md-6 col-sm-12">
+          <div className="card-body" id="productCardBody">
+            <img className="registryProductCardImage" src={product.productImageUrl} alt="tralalala" />
+            <h5 className="registry-product-name">{product.name}</h5>
+            <h5 className="registry-product-brand">{product.brand}</h5>
+            <div className="registry-star-container">
+              <BeautyStars
+                value={product.starRating}
+                size="18px"
+              />
+            </div>
           </div>
           {this.makeInputOrNot()}
-        </div>
       </div>
     );
   }

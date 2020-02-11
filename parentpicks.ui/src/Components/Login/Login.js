@@ -21,7 +21,7 @@ class Login extends React.Component {
       .then(usersData.getUserByFirebaseKey)
       .then((user) => {
         sessionStorage.setItem('userId', user.id);
-        this.props.history.push('/home');
+        this.props.history.push(`/users/${user.id}`);
       })
       .catch(error => {
         console.error('there was an error in logging in', error);
