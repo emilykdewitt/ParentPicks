@@ -1,0 +1,33 @@
+.addToRegistryTitle {
+    font-weight: bold;
+    margin-bottom: 0px;
+    text-align: left;
+}
+
+.reviewInputGroup {
+    margin-bottom: 0px;
+    text-align: left;
+    align-content: left;
+}
+
+.saveNewRegProductBtn {
+    margin-top: 5px;
+    padding: 3px 6px;
+    font-size: 0.75em;
+}
+
+.saveToRegBtnContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.addToRegistryForm {
+    display: flex;
+    flex-direction: horizontal;
+    justify-content: space-between;
+}
+
+.quantityNeededLabelContainer {
+    display: flex;
+    justify-content: flex-start;
+}

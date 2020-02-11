@@ -57,9 +57,9 @@ class CommunityPage extends React.Component {
         return (
             <Container>
               <Row>
-                <Col xs="12" sm="12" m="9" lg="9">
-                  <h1>Users</h1>
-                  <Row>
+                <Col xs="12" sm="12" m="12" lg="12">
+                  <h1>ParentPicks Community</h1>
+                  <Row className="userProfileCardContainer">
                     {makeUserCards}
                   </Row>
                 </Col>

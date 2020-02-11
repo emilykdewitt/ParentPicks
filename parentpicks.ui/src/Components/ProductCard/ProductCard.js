@@ -13,19 +13,17 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    const product = {...this.props};
+    const product = { ...this.props };
     const singleProductLink = `/products/${product.id}`;
     return (
-      <div className="productCard col-lg-4 col-md-6 col-sm-12">
-        <div className="card">
-          <div className="card-body" id="activity-card-body">
-            <img className="card-img-top img-fluid" src={product.productImageUrl} alt="tralalala" />
-            <h5 className="card-title">{product.name}</h5>
-            <h5 className="card-title">{product.brand}</h5>
-            <p className="card-text">{product.description}</p>
-            <Link className="btn btn-info editActivityBtn" to={singleProductLink}>View Product Detail</Link>
-          </div>
+      <div className="card productCard">
+        <div className="card-body" id="productCardBody">
+          <img className="productCardImage" src={product.productImageUrl} alt="tralalala" />
+          <p className="product-name">{product.name}</p>
+          <p className="product-brand">Brand: {product.brand}</p>
+          <p className="product-description"><b>Description: </b>{product.description}</p>
         </div>
+        <Link className="btn btn-info productDetailBtn" to={singleProductLink}>View Product Detail</Link>
       </div>
     );
   }

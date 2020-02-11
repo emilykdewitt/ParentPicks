@@ -3,6 +3,8 @@ import { Alert } from 'reactstrap';
 
 import userRegistryProductData from '../../DataRequests/userRegistryProductData';
 
+import './AddToRegistry.scss';
+
 const defaultRegProduct = {
     userId: '',
     productId: '',
@@ -13,7 +15,7 @@ const defaultRegProduct = {
 class AddToRegistry extends React.Component {
     state = {
         newRegProduct: defaultRegProduct,
-        visible : false
+        visible: false
     }
 
     formFieldStringState = (fieldName, e) => {
@@ -39,40 +41,46 @@ class AddToRegistry extends React.Component {
         }
     }
 
-    onShowAlert = ()=>{
-        this.setState({visible:true},()=>{
-          window.setTimeout(()=>{
-            this.setState({visible:false})
-          },2000)
+    onShowAlert = () => {
+        this.setState({ visible: true }, () => {
+            window.setTimeout(() => {
+                this.setState({ visible: false })
+            }, 2000)
         });
-      }
+    }
 
     render() {
         const { newRegProduct } = this.state;
 
         return (
             <div className="newUserFeedback">
-                <h3 className="addUserFeedbackComponentTitle">Add Item to Registry</h3>
-                <form className="new-activity-form" onSubmit={this.formSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="quantityNeeded">Quantity Needed</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="quantityNeeded"
-                            placeholder="0"
-                            value={newRegProduct.quantityNeeded}
-                            onChange={this.quantityChange}
-                        />
+                <p className="addToRegistryTitle">Add Item to Registry</p>
+                <div className="quantityInputAndBtnContainer">
+                    <div className="quantityNeededLabelContainer">
+                        <label htmlFor="quantityNeeded" >Quantity Needed</label>
                     </div>
-                    <button 
-                        type="submit" 
-                        onClick={()=>{this.onShowAlert()}} 
-                        className="btn saveNewRegProduct"
-                    >
-                        Save Product To Registry
+                    <form className="addToRegistryForm" onSubmit={this.formSubmit}>
+                        <div className="form-group reviewInputGroup">
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="quantityNeeded"
+                                placeholder="0"
+                                value={newRegProduct.quantityNeeded}
+                                onChange={this.quantityChange}
+                            />
+                        </div>
+                        <div className="saveToRegBtnContainer">
+                            <button
+                                type="submit"
+                                onClick={() => { this.onShowAlert() }}
+                                className="btn btn-info saveNewRegProductBtn"
+                            >
+                                Save Product To Registry
                     </button>
-                </form>
+                        </div>
+                    </form>
+                </div>
                 <Alert color="success" isOpen={this.state.visible} >
                     Product added to registry!
                 </Alert>

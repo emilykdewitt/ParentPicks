@@ -2,6 +2,8 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import { Col, Row, Container } from 'reactstrap';
 
+import './ProductDetail.scss';
+
 import productsData from '../../DataRequests/productsData';
 import userFeedbackData from '../../DataRequests/userFeedbackData';
 import userRegistryProductData from '../../DataRequests/userRegistryProductData';
@@ -48,9 +50,26 @@ class ProductDetail extends React.Component {
     checkIfInRegistry = (productId) => {
         const matchingItems = this.state.userRegistryProducts.filter(product => product.id == productId);
         if (matchingItems.length > 0) {
-          alert('This item is already in your registry');
-          return true;
+            alert('This item is already in your registry');
+            return true;
         } else return false;
+    }
+
+    makeUserFeedbackList() {
+        if (this.state.userFeedbacks.length > 0) {
+            this.state.userFeedbacks.map(singleFeedback => (
+                <SingleUserFeedback
+                    key={singleFeedback.id}
+                    id={singleFeedback.id}
+                    userId={singleFeedback.userId}
+                    productId={singleFeedback.productId}
+                    starRating={singleFeedback.starRating}
+                    review={singleFeedback.review}
+                />
+            ))
+        } else {
+            return <p><i>This product has not been reviewed yet.</i></p>
+        }
     }
 
     render() {
@@ -58,48 +77,41 @@ class ProductDetail extends React.Component {
         // const { defaultUserFeedbacks } = this.state;
         // const productsLink = '/products';
 
-        const makeUserFeedbackList = this.state.userFeedbacks.map(singleFeedback => (
-            <SingleUserFeedback
-                key={singleFeedback.id}
-                id={singleFeedback.id}
-                userId={singleFeedback.userId}
-                productId={singleFeedback.productId}
-                starRating={singleFeedback.starRating}
-                review={singleFeedback.review}
-            />
-        ))
-
         return (
             <Container>
                 <div className="SingleProductView">
-                    <h2>Single Product View for {product.name}</h2>
                     <Container>
                         <Row>
                             <Col>
                                 <h3>{product.name}</h3>
-                                <img className="img-fluid" src={product.productImageUrl} alt="tralalala" />
                                 <h6>Brand: {product.brand}</h6>
-                                <p>Description: {product.description}</p>
+                                <img className="img-fluid" src={product.productImageUrl} alt="tralalala" />
                             </Col>
                             <Col>
-                                <AddUserFeedback 
+                                <p className="singleProductPageDescription"><b>Description: </b>{product.description}</p>
+                                <hr />
+                                <AddUserFeedback
                                     key={product.id}
                                     userId={this.state.currentUserId}
                                     productId={product.id}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <h3>All User Feedback</h3>
-                                {makeUserFeedbackList}
-                            </Col>
-                            <Col>
-                                <AddToRegistry 
+                                <hr />
+                                <AddToRegistry
                                     userId={this.state.currentUserId}
                                     productId={product.id}
                                     checkIfInRegistry={this.checkIfInRegistry}
                                 />
+                                <hr />
+                                <p className="userReviewSectionLabel">All User Reviews</p>
+                                {this.makeUserFeedbackList()}
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+
+                            </Col>
+                            <Col>
+
                             </Col>
                         </Row>
                     </Container>

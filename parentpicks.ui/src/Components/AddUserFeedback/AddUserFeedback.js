@@ -9,6 +9,8 @@ import React from 'react';
 // import { render } from 'node-sass';
 import userFeedbackData from '../../DataRequests/userFeedbackData';
 
+import './AddUserFeedback.scss';
+
 const defaultUserFeedback = {
     userId: '',
     productId: '',
@@ -49,10 +51,10 @@ class AddUserFeedback extends React.Component {
         const { newUserFeedback } = this.state;
         return (
             <div className="newUserFeedback">
-            <h3 className="addUserFeedbackComponentTitle">Leave a Review</h3>
+            <p className="addUserFeedbackComponentTitle leaveReviewTitle">Leave a Review</p>
             <form className="new-activity-form" onSubmit={this.formSubmit}>
-              <div className="form-group">
-                <label htmlFor="starRating">Star Rating:</label>
+              <div className="form-group reviewInputGroup">
+                <label htmlFor="starRating" className="reviewInputLabel">Star Rating:</label>
                 <input
                   type="number"
                   className="form-control"
@@ -62,9 +64,10 @@ class AddUserFeedback extends React.Component {
                   onChange={this.starRatingChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="review">Review</label>
+              <div className="form-group reviewInputGroup">
+                <label htmlFor="review" className="reviewInputLabel">Review</label>
                 <input
+                  className="review-text-input-field"
                   type="text"
                   className="form-control"
                   id="review"
@@ -73,7 +76,9 @@ class AddUserFeedback extends React.Component {
                   onChange={this.reviewChange}
                 />
               </div>
-              <button type="submit" className="btn saveNewUserFeedback">Save New User Feedback</button>
+              <div className="userFeedbackBtnContainer">
+                <button type="submit" className="btn btn-info saveNewUserFeedbackBtn">Save My Review</button>
+              </div>
             </form>
           </div>
         )
