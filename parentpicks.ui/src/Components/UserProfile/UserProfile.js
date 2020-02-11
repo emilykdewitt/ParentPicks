@@ -26,31 +26,33 @@ class UserProfile extends React.Component {
     componentDidMount() {
         const userId = this.props.match.params.id;
         usersData.getUserById(userId)
-        .then((userResult) => {
-            this.setState({ user: userResult })
-        })
-        .catch((err) => console.error('no user returned', err));
+            .then((userResult) => {
+                this.setState({ user: userResult })
+            })
+            .catch((err) => console.error('no user returned', err));
     }
 
     makeButtonOrNot = () => {
         const userId = this.state.user.id;
         const currentUserId = parseInt(sessionStorage.getItem('userId'));
         const linkToEditUser = `/users/edit/${currentUserId}`;
-        const linkToUserRegistry=`/userRegistryProduct/${userId}`;
-        const linkToUserPicks=`/userFeedback/${userId}`;
+        const linkToUserRegistry = `/userRegistryProduct/${userId}`;
+        const linkToUserPicks = `/userFeedback/${userId}`;
         if (userId === currentUserId) {
             return (
                 <div>
-                    <Link to={linkToEditUser}>Click here to Edit Your Profile</Link>
-                    <Link className="btn btn-primary" to={linkToUserRegistry}>Go To Your Registry</Link>
-                    <Link className="btn btn-info" to={linkToUserPicks}>Go To Your Picks</Link>
+                    <div>
+                        <Link className="btn btn-primary profileBtn" to={linkToUserRegistry}>Go To Your Registry</Link>
+                        <Link className="btn btn-info profileBtn" to={linkToUserPicks}>Go To Your Picks</Link>
+                    </div>
+                    <Link className="btn btn-danger profileBtn" to={linkToEditUser}>Edit Your Profile</Link>
                 </div>
             )
         } else {
             return (
                 <div>
-                    <Link className="btn btn-primary" to={linkToUserRegistry}>View {this.state.user.firstName}'s Registry</Link>
-                    <Link className="btn btn-info" to={linkToUserPicks}>View {this.state.user.firstName}'s Picks</Link>
+                    <Link className="btn btn-primary profileBtn" to={linkToUserRegistry}>View {this.state.user.firstName}'s Registry</Link>
+                    <Link className="btn btn-info profileBtn" to={linkToUserPicks}>View {this.state.user.firstName}'s Picks</Link>
                 </div>
             )
         }

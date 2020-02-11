@@ -4,6 +4,8 @@ import { Container, Row, Col, ButtonGroup, Button, Input } from 'reactstrap';
 import productsData from '../../DataRequests/productsData';
 import categoriesData from '../../DataRequests/categoriesData';
 
+import './Products.scss'
+
 import ProductCard from '../../Components/ProductCard/ProductCard';
 
 class Products extends React.Component {
@@ -88,7 +90,7 @@ class Products extends React.Component {
                 <Col xs="12" s="12" m="3" lg="3" align="center" id="searchAndCategoryContainer">
                   <Row>
                     <form className="form-inline my-2 my-lg-0" id="searchIconAndInput">
-                      <Input id="productSearchInput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={this.filterProductsBySearchInput} />
+                      <Input id="productSearchInput" className="productSearchInput form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search products" onChange={this.filterProductsBySearchInput} />
                     </form>
                   </Row>
                   <Row>

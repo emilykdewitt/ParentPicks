@@ -1,27 +1,29 @@
-.productCard {
+.userProfileCard {
     border-radius: 10px;
     transition: 0.3s;
-    height: 300px;
-    margin: 10px;
+    height: 275px;
+    margin: 5px;
+    padding: 0px 0px;
     width: 250px;
     background-color: white;
 }
 
-.productCardImage {
-    max-height: 125px;
-    margin: 0px;
+.userProfileCardImg {
+
+    max-height: 175px;
+    margin: 10px 0px 0px 0px;
 }
 
-#productCardBody {
+#userCardBody {
     padding: 5px
 }
 
-.product-name {
+.user-name {
     font-size: 1.2em;
     margin-bottom: 2px;
 }
 
-.product-brand {
+.user-location {
     font-size: 1em;
     margin-bottom: 2px;
 }
@@ -32,7 +34,7 @@
     text-align: left;
 }
 
-.productDetailBtn {
+.viewProfileBtn {
     padding-right: 6px;
     padding-left: 6px;
     padding-bottom: 3px;
