@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ParentPicks.DTOs;
 
 namespace ParentPicks.Controllers
 {
@@ -36,6 +37,13 @@ namespace ParentPicks.Controllers
             return productsWithCategoryId;
         }
 
-
+        //POST new product
+        [HttpPost]
+        public IEnumerable<Product> AddProduct(AddProductDTO productToAdd)
+        {
+            var repo = new ProductRepository();
+            repo.AddNewProduct(productToAdd);
+            return repo.GetAllProducts();
+        }
     }
 }

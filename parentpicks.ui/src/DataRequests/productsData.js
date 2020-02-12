@@ -18,7 +18,10 @@ const getSingleProduct = productId => new Promise((resolve, reject) => {
   .catch((err) => reject(err));
 });
 
+const addProduct = productObj => axios.post(`${databaseUrl}`, productObj)
+
 export default {
   getProducts,
   getSingleProduct,
+  addProduct
 };

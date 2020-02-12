@@ -22,6 +22,7 @@ import UserProfile from '../Components/UserProfile/UserProfile';
 import CommunityPage from '../Components/CommunityPage/CommunityPage';
 import EditUserProfile from '../Components/EditUserProfile/EditUserProfile';
 import EditUserFeedback from '../Components/EditUserFeedback/EditUserFeedback';
+import AddNewProduct from '../Components/AddNewProduct/AddNewProduct';
 
 import './App.scss';
 
@@ -121,6 +122,7 @@ class App extends React.Component {
               <PrivateRoute exact path="/users" authed={authed} component={CommunityPage} />
               <PrivateRoute exact path='/users/:id' component={UserProfile} authed={authed} />
               <PrivateRoute exact path='/users/edit/:id' component={EditUserProfile} authed={authed} />
+              <PrivateRoute path='/add-new-product' component={AddNewProduct} authed={authed} />
               <Redirect from="*" to="/landing-page" />
             </Switch>
           </React.Fragment>

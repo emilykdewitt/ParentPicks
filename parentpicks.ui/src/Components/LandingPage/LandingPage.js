@@ -1,10 +1,14 @@
 import React from 'react';
 
+import './LandingPage.scss';
+
 class LandingPage extends React.Component {
     render() {
         return (
-            <div>
-                <h1>Welcome to the Landing Page!</h1>
+            <div className="imageContainer">
+                <div className="mainText">
+                    <h1>Welcome to the Landing Page!</h1>
+                </div>
             </div>
         );
     }
