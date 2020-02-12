@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, ButtonGroup, Button, Input } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import productsData from '../../DataRequests/productsData';
 import categoriesData from '../../DataRequests/categoriesData';
@@ -102,6 +103,7 @@ class Products extends React.Component {
                 </Col>
                 <Col xs="12" sm="12" m="9" lg="9">
                   <h1>Products</h1>
+                  <Link className="addNewProductBtn" to="/add-new-product" className="btn btn-info">Add New Product</Link>
                   <Row>
                     {makeProductCards}
                   </Row>

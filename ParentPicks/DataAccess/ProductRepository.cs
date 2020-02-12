@@ -18,16 +18,18 @@ namespace ParentPicks.DataAccess
             using (var db = new SqlConnection(_connectionString))
             {
                 var sql = @"INSERT INTO [dbo].[Product]
-                            ([Category]
+                            ([CategoryId]
                             ,[Name]
                             ,[Brand]
-                            ,[Description])
+                            ,[Description]
+                            ,[ProductImageUrl])
                             output inserted.*
                              VALUES
-                            (@Category
+                            (@CategoryId
                             ,@Name
                             ,@Brand
-                            ,@Description)";
+                            ,@Description
+                            ,@ProductImageUrl)";
 
                 return db.Execute(sql, productToAdd) == 1;
             }
