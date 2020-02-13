@@ -47,7 +47,7 @@ class Login extends React.Component {
     return (
       <div className="LoginPageDiv">
         <div id="login-form">
-          <h3 className="text-center loginPageHeader">Sign in to your ParentPicks Account</h3>
+          <h2 className="text-center loginPageHeader">Sign in to your ParentPicks Account</h2>
           <form className="form-horizontal">
           <div className="form-group">
               <div className="text-center">

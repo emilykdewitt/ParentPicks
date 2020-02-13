@@ -1,9 +1,28 @@
 .user-profile-image {
-    width: 250px;
+    width: 200px;
     border-radius: 50%;
     margin: 15px;
+    border: 10px solid #072C49;
 }
 
-.profileBtn {
+.goToRegistryBtn {
     margin: 10px;
+    background-color: #A5D1D0;
+    border-color: #A5D1D0
+}
+
+.goToPicksBtn {
+    margin: 10px;
+    background-color: #072C49;
+    border-color: #072C49
+}
+
+.editProfileBtn {
+    margin: 10px;
+    background-color: #BB2A27;
+    border-color: #BB2A27
+}
+
+.user-profile-bio {
+    margin-bottom: 5px;
 }

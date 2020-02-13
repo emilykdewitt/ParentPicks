@@ -86,7 +86,7 @@ class Products extends React.Component {
           ))
 
         return (
-            <Container>
+            <Container className="productsFullPage">
               <Row>
                 <Col xs="12" s="12" m="3" lg="3" align="center" id="searchAndCategoryContainer">
                   <Row>
@@ -97,14 +97,14 @@ class Products extends React.Component {
                   <Row>
                     <ButtonGroup vertical id="categoryBtnContainer">
                       {makeCategories}
-                      <Button id="showAllBtn" onClick={this.getCategories}>Show All</Button>
+                      <Button id="showAllBtn" onClick={this.getProducts}>Show All</Button>
                     </ButtonGroup>
                   </Row>
                 </Col>
                 <Col xs="12" sm="12" m="9" lg="9">
-                  <h1>Products</h1>
-                  <Link className="addNewProductBtn" to="/add-new-product" className="btn btn-info">Add New Product</Link>
-                  <Row>
+                  <h2 className="productsPageTitle">Browse ParentPicks</h2>
+                  <Link to="/add-new-product" className="btn btn-info addNewProductBtn">Add New Product</Link>
+                  <Row className="productCardsContainer">
                     {makeProductCards}
                   </Row>
                 </Col>

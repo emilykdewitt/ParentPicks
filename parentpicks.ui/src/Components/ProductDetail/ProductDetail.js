@@ -56,6 +56,7 @@ class ProductDetail extends React.Component {
     }
 
     makeUserFeedbackList() {
+        console.error(this.state.userFeedbacks)
         if (this.state.userFeedbacks.length > 0) {
             this.state.userFeedbacks.map(singleFeedback => (
                 <SingleUserFeedback

@@ -40,19 +40,19 @@ class UserProfile extends React.Component {
         const linkToUserPicks = `/userFeedback/${userId}`;
         if (userId === currentUserId) {
             return (
-                <div>
+                <div className="profilePageDiv">
                     <div>
-                        <Link className="btn btn-primary profileBtn" to={linkToUserRegistry}>Go To Your Registry</Link>
-                        <Link className="btn btn-info profileBtn" to={linkToUserPicks}>Go To Your Picks</Link>
+                        <Link className="btn btn-primary goToRegistryBtn" to={linkToUserRegistry}>Go To Your Registry</Link>
+                        <Link className="btn btn-info goToPicksBtn" to={linkToUserPicks}>Go To Your Picks</Link>
                     </div>
-                    <Link className="btn btn-danger profileBtn" to={linkToEditUser}>Edit Your Profile</Link>
+                    <Link className="btn btn-danger editProfileBtn" to={linkToEditUser}>Edit Your Profile</Link>
                 </div>
             )
         } else {
             return (
                 <div>
-                    <Link className="btn btn-primary profileBtn" to={linkToUserRegistry}>View {this.state.user.firstName}'s Registry</Link>
-                    <Link className="btn btn-info profileBtn" to={linkToUserPicks}>View {this.state.user.firstName}'s Picks</Link>
+                    <Link className="btn btn-primary goToRegistryBtn" to={linkToUserRegistry}>View {this.state.user.firstName}'s Registry</Link>
+                    <Link className="btn btn-info goToPicksBtn" to={linkToUserPicks}>View {this.state.user.firstName}'s Picks</Link>
                 </div>
             )
         }
@@ -68,7 +68,7 @@ class UserProfile extends React.Component {
                         <img className="user-profile-image" src={user.profilePhotoUrl} alt="face"></img>
                         <h2 className="user-profile-name">{user.firstName} {user.lastName}</h2>
                         <h5 className="user-profile-location">{user.location}</h5>
-                        <p>Bio: {user.bio}</p>
+                        <p className="user-profile-bio">Bio: {user.bio}</p>
                     </div>
                     {this.makeButtonOrNot()}
                 </div>
