@@ -36,7 +36,7 @@ class UserPickCard extends React.Component {
     if (userId === loggedInUserId) {
       return (
         <div>
-          <p className="card-text">My Rating: {userPick.starRating}</p>
+          <p className="card-text userRatingLabel">My Rating:</p>
           <div className="starContainer">
             <BeautyStars
               value={userPick.starRating}
@@ -44,21 +44,23 @@ class UserPickCard extends React.Component {
             />
           </div>
           <p className="review-description"><b>My Review: </b>{userPick.review}</p>
-          <Link className="btn btn-info pick-card-button" to={linkToEditReview}>Edit Your Review</Link>
-          <Button className="btn btn-danger pick-card-button" onClick={this.deleteMe}>Delete this Review</Button>
+          <div className="bottomOfCardBtnContainer">
+          <Link className="btn btn-info pick-card-button mt-auto align-self-end" to={linkToEditReview}>Edit Your Review</Link>
+          <Button className="btn btn-danger pick-card-button mt-auto align-self-end" onClick={this.deleteMe}>Delete this Review</Button>
+          </div>
         </div>
       )
     } else {
       return (
         <div>
-          <p className="card-text">{userPick.userFirstName}'s Rating: {userPick.starRating}</p>
+          <p className="card-text userRatingLabel">{userPick.userFirstName}'s Rating:</p>
           <div className="pick-star-container">
           <BeautyStars
             value={userPick.starRating}
             size="18px"
           />
           </div>
-          <p className="review-description">{userPick.userFirstName}'s Review: {userPick.review}</p>
+          <p className="review-description"><b>{userPick.userFirstName}'s Review: </b>{userPick.review}</p>
         </div>
       )
     }
@@ -67,8 +69,8 @@ class UserPickCard extends React.Component {
   render() {
     const userPick = {...this.props};
     return (
-      <div className="userPickCard card col-lg-4 col-md-6 col-sm-12">
-          <div className="pickCardBody" id="activity-card-body">
+      <div className="userPickCard card">
+          <div className="pickCardBody card-body flex-column" id="activity-card-body">
             <img className="pickCardImage" src={userPick.productImageUrl} alt="tralalala" />
             <h5 className="pick-card-name">{userPick.name}</h5>
             <h5 className="pick-card-brand">{userPick.brand}</h5>

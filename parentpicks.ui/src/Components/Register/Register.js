@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import authRequests from '../Auth/Auth';
 
-// import './Register.scss';
+import './Register.scss';
 
 const defaultUser = {
   email: '',
@@ -58,8 +58,8 @@ class Register extends React.Component {
   render() {
     const { newUser, email, password } = this.state;
     return (
-      <div className="NewUserPage container">
-        <h1 className="join-header">Join ParentPicks!</h1>
+      <div className="newUserPage container">
+        <h1 className="join-header">Create ParentPicks Account</h1>
         <form className="row justify-content-center new-user-form" onSubmit={this.formSubmit}>
           <div className="form-group col-11 col-md-9 col-lg-7">
             <label htmlFor="email" className="newUserFormLabel">Email</label>
@@ -146,7 +146,7 @@ class Register extends React.Component {
             />
           </div>
           <div className="form-group col-11 col-md-9 col-lg-7">
-            <button type="submit" className="new-user-btn btn btn-primary btn-lg">Join ParentPicks</button>
+            <button type="submit" className="register-new-user-btn btn btn-primary btn-lg">Create Account</button>
           </div>
         </form>
       </div>

@@ -6,6 +6,8 @@
     padding: 0px 0px;
     width: 250px;
     background-color: white;
+    box-shadow: 5px 5px 5px rgb(189, 189, 189);
+
 }
 
 .userProfileCardImg {
@@ -21,11 +23,14 @@
 .user-name {
     font-size: 1.2em;
     margin-bottom: 2px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5em;
 }
 
 .user-location {
     font-size: 1em;
     margin-bottom: 2px;
+
 }
 
 .product-description {

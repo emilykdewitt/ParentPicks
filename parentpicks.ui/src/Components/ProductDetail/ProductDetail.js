@@ -56,6 +56,7 @@ class ProductDetail extends React.Component {
     }
 
     makeUserFeedbackList() {
+        console.error(this.state.userFeedbacks)
         if (this.state.userFeedbacks.length > 0) {
             this.state.userFeedbacks.map(singleFeedback => (
                 <SingleUserFeedback
@@ -83,7 +84,7 @@ class ProductDetail extends React.Component {
                     <Container>
                         <Row>
                             <Col>
-                                <h3>{product.name}</h3>
+                                <p className="productDetailPageTitle">{product.name}</p>
                                 <h6>Brand: {product.brand}</h6>
                                 <img className="img-fluid" src={product.productImageUrl} alt="tralalala" />
                             </Col>

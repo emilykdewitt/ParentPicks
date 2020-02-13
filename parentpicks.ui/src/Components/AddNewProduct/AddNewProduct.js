@@ -69,7 +69,7 @@ class AddToRegistry extends React.Component {
         return (
             <div className="newProduct">
                 <form className="addProductForm" onSubmit={this.formSubmit}>
-                <p className="addProductTitle">Add Item to Registry</p>
+                <p className="addProductTitle">Add New Product to ParentPicks</p>
                     <div className="form-group">
                         <label htmlFor="categoryMenu">Select Category</label>
                         <select className="form-control" id="categoryMenu" onChange={this.categoryIdChange}>
@@ -124,7 +124,7 @@ class AddToRegistry extends React.Component {
                                 type="text"
                                 className="form-control"
                                 id="description"
-                                placeholder="Product brand"
+                                placeholder="Product description"
                                 value={newProduct.description}
                                 onChange={this.descriptionChange}
                             />

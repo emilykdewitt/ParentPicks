@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+.LoginPageDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(216, 230, 229);
+    height: 100%;
+}
+
+.registerForAccountBtn {
+    background-color: rgb(170, 169, 169);
+    border-color: rgb(170, 169, 169);
+    font-size: 14px;
+}
+
+.loginBtn {
+    background-color: rgb(170, 169, 169);
+    border-color: rgb(170, 169, 169);
+}
+
+.loginPageHeader {
+    margin: 10px 0px 15px 0px;
+    font-family: 'Quicksand', sans-serif;
+}

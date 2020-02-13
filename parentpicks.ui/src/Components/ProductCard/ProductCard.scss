@@ -5,6 +5,7 @@
     margin: 10px;
     width: 250px;
     background-color: white;
+    box-shadow: 5px 5px 5px rgb(189, 189, 189);
 }
 
 .productCardImage {
@@ -47,4 +48,5 @@
     padding-top: 3px;
     font-size: 0.75em;
     margin: 3px;
-}
+    background-color: rgb(170, 169, 169);
+    border-color: rgb(170, 169, 169);}

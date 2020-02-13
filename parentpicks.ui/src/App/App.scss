@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: rgb(216, 230, 229);
 }
 
 .App-logo {
@@ -12,6 +13,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
+
 
 .App-header {
   background-color: #282c34;

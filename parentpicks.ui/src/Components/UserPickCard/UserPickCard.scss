@@ -3,13 +3,14 @@
     justify-content: center;
 }
 
-.registryProductCard {
+.userPickCard {
     border-radius: 10px;
     transition: 0.3s;
     height: 320px;
     margin: 10px;
     width: 250px;
     background-color: white;
+    box-shadow: 5px 5px 5px rgb(189, 189, 189);
 }
 
 .pickCardImage {
@@ -22,7 +23,7 @@
 }
 
 .pick-card-name {
-    font-size: 1.2em;
+    font-size: 16px;
     margin-bottom: 2px;
 }
 
@@ -36,6 +37,12 @@
     justify-content: center;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.userRatingLabel {
+    margin-bottom: 2px;
+    font-size: 12px;
+    margin-top: 5px;
 }
 
 .review-description {

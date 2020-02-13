@@ -41,16 +41,18 @@ class RegistryProductCard extends React.Component {
     if (userIdOfPage === loggedInUserId) {
       return (
         <div>
-          <label htmlFor="quantityNeeded">Quantity Needed</label>
-          <input
-            type="number"
-            className="form-control"
-            id="quantityNeeded"
-            placeholder={this.state.quantityNeeded}
-            value={this.state.quantityNeeded}
-            onBlur={this.updateMe}
-            onChange={(e) => this.setState({ quantityNeeded: e.target.value })}
-          />
+          <label className="quantityNeededLabel" htmlFor="quantityNeeded">Quantity Needed</label>
+          <div className="quantityUpdaterContainer">
+            <input
+              type="number"
+              className="form-control quantityUpdater"
+              id="quantityNeeded"
+              placeholder={this.state.quantityNeeded}
+              value={this.state.quantityNeeded}
+              onBlur={this.updateMe}
+              onChange={(e) => this.setState({ quantityNeeded: e.target.value })}
+            />
+          </div>
           <Button className="btn btn-primary remove-from-registry-btn" onClick={this.deleteMe}>Remove from Registry</Button>
         </div>
       )
@@ -64,19 +66,19 @@ class RegistryProductCard extends React.Component {
   render() {
     const product = { ...this.props };
     return (
-      <div className="registryProductCard card col-lg-3 col-md-6 col-sm-12">
-          <div className="card-body" id="productCardBody">
-            <img className="registryProductCardImage" src={product.productImageUrl} alt="tralalala" />
-            <h5 className="registry-product-name">{product.name}</h5>
-            <h5 className="registry-product-brand">{product.brand}</h5>
-            <div className="registry-star-container">
-              <BeautyStars
-                value={product.starRating}
-                size="18px"
-              />
-            </div>
+      <div className="registryProductCard">
+        <div className="card-body" id="productCardBody">
+          <img className="registryProductCardImage" src={product.productImageUrl} alt="tralalala" />
+          <p className="registry-product-name">{product.name}</p>
+          <p className="registry-product-brand">Brand: {product.brand}</p>
+          <div className="registry-star-container">
+            <BeautyStars
+              value={product.starRating}
+              size="18px"
+            />
           </div>
-          {this.makeInputOrNot()}
+        </div>
+        {this.makeInputOrNot()}
       </div>
     );
   }
