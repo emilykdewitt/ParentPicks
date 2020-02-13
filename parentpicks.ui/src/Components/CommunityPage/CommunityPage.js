@@ -5,6 +5,8 @@ import usersData from '../../DataRequests/usersData';
 
 import UserCard from '../../Components/UserCard/UserCard';
 
+import './CommunityPage.scss';
+
 class CommunityPage extends React.Component {
     state = {
         users: [],
@@ -56,14 +58,11 @@ class CommunityPage extends React.Component {
 
         return (
             <Container>
-              <Row>
-                <Col xs="12" sm="12" m="12" lg="12">
-                  <h1>ParentPicks Community</h1>
+                  <p className="commPageTitle">ParentPicks Community</p>
+                  <p className="commPageTagline">Meet fellow parents and view their registries and recommendations.</p>
                   <Row className="userProfileCardContainer">
                     {makeUserCards}
                   </Row>
-                </Col>
-              </Row>
             </Container>
           )
     }

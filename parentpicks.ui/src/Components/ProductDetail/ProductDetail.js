@@ -84,7 +84,7 @@ class ProductDetail extends React.Component {
                     <Container>
                         <Row>
                             <Col>
-                                <h3>{product.name}</h3>
+                                <p className="productDetailPageTitle">{product.name}</p>
                                 <h6>Brand: {product.brand}</h6>
                                 <img className="img-fluid" src={product.productImageUrl} alt="tralalala" />
                             </Col>

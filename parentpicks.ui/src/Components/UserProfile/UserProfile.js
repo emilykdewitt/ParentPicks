@@ -66,9 +66,9 @@ class UserProfile extends React.Component {
                 <div className="userProfile">
                     <div className="image-name-location-div">
                         <img className="user-profile-image" src={user.profilePhotoUrl} alt="face"></img>
-                        <h2 className="user-profile-name">{user.firstName} {user.lastName}</h2>
+                        <p className="user-profile-name">{user.firstName} {user.lastName}</p>
                         <h5 className="user-profile-location">{user.location}</h5>
-                        <p className="user-profile-bio">Bio: {user.bio}</p>
+                        <p className="user-profile-bio">{user.bio}</p>
                     </div>
                     {this.makeButtonOrNot()}
                 </div>

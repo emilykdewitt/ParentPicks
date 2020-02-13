@@ -1,4 +1,4 @@
-.registryProductCard {
+.feedbackProductCard {
     border-radius: 10px;
     transition: 0.3s;
     height: 320px;
@@ -7,44 +7,44 @@
     background-color: white;
 }
 
-.registryProductCardImage {
+.feedbackProductCardImage {
     max-height: 125px;
     margin: 0px;
 }
 
-#productCardBody {
-    padding: 5px
-}
+// #productCardBody {
+//     padding: 5px
+// }
 
-.registry-product-name {
+.feedback-product-name {
     font-size: 1.2em;
     margin-bottom: 2px;
 }
 
-.registry-product-brand {
+.feedback-product-brand {
     font-size: 1em;
     margin-bottom: 2px;
 }
 
-.registry-star-container {
+.feedback-star-container {
     display: flex;
     justify-content: center;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.registry-product-description {
+.feedback-product-description {
     font-size: 0.75em;
     margin-bottom: 2px;
     text-align: left;
     margin-top: 5px;
 }
 
-.remove-from-registry-btn {
-    padding-right: 6px;
-    padding-left: 6px;
-    padding-bottom: 3px;
-    padding-top: 3px;
-    font-size: 0.75em;
-    margin: 3px;
-}
+// .remove-from-registry-btn {
+//     padding-right: 6px;
+//     padding-left: 6px;
+//     padding-bottom: 3px;
+//     padding-top: 3px;
+//     font-size: 0.75em;
+//     margin: 3px;
+// }

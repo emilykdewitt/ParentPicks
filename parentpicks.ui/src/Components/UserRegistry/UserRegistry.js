@@ -7,6 +7,8 @@ import usersData from '../../DataRequests/usersData';
 
 import RegistryProductCard from '../RegistryProductCard/RegistryProductCard';
 
+import './UserRegistry.scss';
+
 const defaultUser = {
   id: '',
   dateCreated: '',
@@ -127,7 +129,7 @@ class UserRegistry extends React.Component {
     ))
 
     return (
-      <Container>
+      <Container className="registryPageContainer">
         <Row>
           <Col xs="12" s="12" m="3" lg="3" align="center" id="searchAndCategoryContainer">
             <Row>
@@ -143,7 +145,7 @@ class UserRegistry extends React.Component {
             </Row>
           </Col>
           <Col xs="12" sm="12" m="9" lg="9">
-            <h1>{this.state.user.firstName}'s Registry</h1>
+            <p className="userNameRegistryTitle">{this.state.user.firstName}'s Registry</p>
             <Row>
               {makeRegistryItemCards}
             </Row>

@@ -7,6 +7,8 @@ import usersData from '../../DataRequests/usersData';
 
 import UserPickCard from '../UserPickCard/UserPickCard';
 
+import './UserPicks.scss';
+
 const defaultUser = {
   id: '',
   dateCreated: '',
@@ -115,7 +117,7 @@ class UserPicks extends React.Component {
     )
 
     return (
-      <Container>
+      <Container className="userPicksFullPage">
         <Row>
           <Col xs="12" s="12" m="3" lg="3" align="center" id="searchAndCategoryContainer">
             <Row>
@@ -131,8 +133,8 @@ class UserPicks extends React.Component {
             </Row>
           </Col>
           <Col xs="12" sm="12" m="9" lg="9">
-          <h1>{this.state.user.firstName}'s Picks</h1>
-            <Row>
+          <p className="userNamePickTitle">{this.state.user.firstName}'s Picks</p>
+            <Row className="pickCardsContainer">
               {makePickCards}
             </Row>
           </Col>

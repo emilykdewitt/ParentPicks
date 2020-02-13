@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import userShape from '../../Helpers/userShape';
 
@@ -54,6 +55,8 @@ class EditUserProfile extends React.Component {
     };
 
     render() {
+        const userId = sessionStorage.getItem('userId');
+        const myProfileLink = `/users/${userId}`
         const newUser = this.state.newUser;
         const existingUser = this.state.existingUser;
         return (
@@ -121,7 +124,8 @@ class EditUserProfile extends React.Component {
                         />
                     </div>
                     <div className="form-group col-11 col-md-9 col-lg-7">
-                        <button type="submit" className="new-user-btn btn btn-primary btn-lg">Save Profile Info</button>
+                        <button type="submit" className="new-user-btn btn btn-primary">Save Profile Info</button>
+                        <Link className="btn btn-danger" to={myProfileLink}>Cancel</Link>
                     </div>
                 </form>
             </div>
