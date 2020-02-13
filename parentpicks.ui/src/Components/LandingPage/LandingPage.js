@@ -5,12 +5,10 @@ import './LandingPage.scss';
 class LandingPage extends React.Component {
     render() {
         return (
-            <div className="imageContainer">
-                <div className="mainText">
-                    <h1>Welcome to the Landing Page!</h1>
-                </div>
+            <div className="bannerContainer">
+                <img className="landingPageBackground" alt="Mother carrying baby in air in front of multi-colored wall" src="https://raw.githubusercontent.com/emilykdewitt/ParentPicks/master/parentpicks.ui/public/Images/parentpicksbackgroundfinal.png" />
             </div>
-        );
+        )
     }
 }
 

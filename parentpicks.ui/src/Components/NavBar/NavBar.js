@@ -21,7 +21,7 @@ class MyNavbar extends React.Component {
     authed: PropTypes.bool.isRequired,
   }
 
-  state= {
+  state = {
     isOpen: false,
   }
 
@@ -44,42 +44,50 @@ class MyNavbar extends React.Component {
       if (authed) {
         return (
           <Nav className="ml-auto" navbar>
-          <NavItem>
-            <NavLink tag={RRNavLink} to={myProfileLink}>Home</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink tag={RRNavLink} to='/products'>Products</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink tag={RRNavLink} to={myRegistryLink}>My Registry</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink tag={RRNavLink} to={myPicksLink}>My Picks</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink tag={RRNavLink} to='/users'>Community</NavLink>
-          </NavItem>
-          {/* <NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to={myProfileLink}>Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to='/products'>Products</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to={myRegistryLink}>My Registry</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to={myPicksLink}>My Picks</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to='/users'>Community</NavLink>
+            </NavItem>
+            {/* <NavItem>
             <NavLink tag={RRNavLink} to='/users/1003'>My Profile</NavLink>
           </NavItem> */}
-          <NavItem>
-            <NavLink onClick={this.logMeOut}>Log out</NavLink>
-          </NavItem>
-        </Nav>
+            <NavItem>
+              <NavLink onClick={this.logMeOut}>Log out</NavLink>
+            </NavItem>
+          </Nav>
         );
       }
       return (
         <Nav className="ml-auto" navbar>
           <NavItem>
-          <NavLink tag={RRNavLink} to='/Login'>Log In</NavLink>
+            <NavLink tag={RRNavLink} to='/Login'>Log In</NavLink>
           </NavItem>
         </Nav>
       );
     };
     return (
       <div className="MyNavbar">
-      <Navbar color="dark" dark expand="md">
-          <NavbarBrand className="navbarBrand" href="/">ParentPicks</NavbarBrand>
+        <Navbar className="navBarBrandColor" color="dark" dark expand="md">
+          <NavbarBrand className="navbarBrand" href="/">
+            <img
+              src="https://raw.githubusercontent.com/emilykdewitt/ParentPicks/master/parentpicks.ui/public/Images/parentpickslogo3.png"
+              width="40"
+              height="40"
+              className="d-inline-block align-top"
+              alt="Parent Picks logo"
+            />
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             {buildNavbar()}
