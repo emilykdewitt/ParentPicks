@@ -4,19 +4,19 @@
 ParentPicks is an application that new parents can use to view highly recommended baby and toddler products, based on ratings and reviews from their community. Parents are then able to add the recommended products to their baby registry.
 
 ## Screenshots
-* Login Page
+### Login Page
 ![Login Page](./parentpicks.ui/public/Images/LoginPage.PNG)
 
-* All Products Page
+### All Products Page
 ![All Products Page](./parentpicks.ui/public/Images/AllProducts.PNG)
 
-* Registry Page
+### Registry Page
 ![Registry Page](./parentpicks.ui/public/Images/Registry.PNG)
 
-* My Picks Page
+### My Picks Page
 ![My Picks](./parentpicks.ui/public/Images/MyPicks.PNG)
 
-* Community Page
+### Community Page
 ![Community Page](./parentpicks.ui/public/Images/Community.PNG)
 
 ## How to visit site
